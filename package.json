@@ -1,0 +1,28 @@
+{
+  "name": "api-javascript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass:compile": "node-sass --include-path sass public/scss/style.scss public/css/style.css"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "canvas": "^2.8.0",
+    "cors": "^2.8.5",
+    "cross-fetch": "^3.1.4",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "isomorphic-fetch": "^3.0.0",
+    "node-fetch": "^3.0.0",
+    "nodemon": "^2.0.13",
+    "pug": "^3.0.2",
+    "spotify-web-api-node": "^5.0.2"
+  },
+  "devDependencies": {
+    "node-sass": "^6.0.1"
+  }
+}
