@@ -6,11 +6,42 @@ A unofficial open-source Spotify PromoCards API built to serve Song Cards. For m
 
 # Table of contents
 
+* [Usage](#usage)
 * [Support](#support)
 * [Release Versions](#release-versions)
 * [Hosting your own](#host-your-own)
 * [Contributing](#contributing)
 * [License](#license)
+
+## Usage
+
+### By Song Track Name*
+*Results can differ as there can be another song with the Same Name
+```
+https://spotify-cards.deta.dev/api?name={song name}&color={color hex without #}
+```
+
+**Example**
+```
+https://spotify-cards.deta.dev/api?name=Silver%20Lining&color=A0C3D2
+```
+
+### By Song Track ID {Recommended}
+```
+https://spotify-cards.deta.dev/api?id={song id}&color={color hex without #}
+```
+
+**Example**
+```
+https://spotify-cards.deta.dev/api?id=05iALOptaNoV3EmXnxz1IJ&color=A0C3D2
+```
+
+### How to get Spotify Song Track ID?
+
+* Go to your song
+* Right Click >> Share (Keep Ctrl Pressed) >> Copy Spotify URI
+* The ID after ```spotify:``` is the Spotify Song Track ID
+
 
 ## Support
 
