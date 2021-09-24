@@ -2,7 +2,7 @@
 <img src="https://spotify-cards.deta.dev/api?id=05iALOptaNoV3EmXnxz1IJ&color=A0C3D2" />
 </p>
 
-A unofficial open-source Spotify PromoCards API built to serve Song Cards. For more information on using this API, see <a href="https://spotify-cards.deta.dev>Docs</a>
+A unofficial open-source Spotify PromoCards API built to serve Song Cards. For more information on using this API, see <a href="https://spotify-cards.deta.dev">Docs</a>
 
 # Table of contents
 
