@@ -15,8 +15,9 @@ app.use(cors({
     origin: '*'
 }));
 
-app.use('/css', express.static('public/css'))
+app.use('/css', express.static('public/css'));
 app.use('/fonts', express.static('fonts'));
+app.use('/img', express.static('public/img'));
 
 require('dotenv').config()
 
