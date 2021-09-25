@@ -1,26 +1,30 @@
-const fetch = require('cross-fetch')
+const fetch = require('cross-fetch') // Not Used
 const path = require("path")
 const express = require('express')
-const bodyParser = require('body-parser')
-const url = require('url')
-const querystring = require('querystring')
-const fs = require('fs')
+const bodyParser = require('body-parser') // Not Used
+const url = require('url') // Not Used
+const querystring = require('querystring') // Not Used
+const fs = require('fs') // Not Used
 const SpotifyWebApi = require('spotify-web-api-node')
 const cors = require('cors');
 
 const app = express()
 const port = process.env.PORT || 3000
 
+// CORS
 app.use(cors({
     origin: '*'
 }));
 
+// Static Dirs
 app.use('/css', express.static('public/css'));
 app.use('/fonts', express.static('fonts'));
 app.use('/img', express.static('public/img'));
 
+// Loading Dotenv if running on VPS
 require('dotenv').config()
 
+// Setting ClientID and ClientSecret
 let spotifyApi = new SpotifyWebApi({
     clientId: process.env.Client_ID,
     clientSecret: process.env.Client_Secret,
@@ -28,16 +32,16 @@ let spotifyApi = new SpotifyWebApi({
 });
 
 // Defining Vars
-let songName, songArtist, songImageURL;
+let songName, songArtist, songImageURL; // Not Used
 
-// Fonts for Card
+// Fonts for Card (Will switch back to Spotify Version of Gotham on production server)
 const { registerFont, createCanvas, loadImage } = require('canvas');
 registerFont("./fonts/GothamBold.ttf", { family: "GothamBold" });
 registerFont("./fonts/Gotham-Black.otf", { family: "GothamBlack" });
 registerFont("./fonts/GothamBook.ttf", { family: "GothamBook" });
 registerFont("./fonts/GothamMedium.ttf", { family: "GothamMedium" });
 
-// Client Credentials Flow
+// Client Credentials Flow with Auto Token Renew after 1 hour
 function newToken(){
     spotifyApi.clientCredentialsGrant().then(
         function(data) {
@@ -60,7 +64,7 @@ tokenRefreshInterval = setInterval(newToken, 1000 * 60 * 60);
 
 
 
-// Function Returning Name, Artist Name, Image URL 
+// Function, Name, Color
 async function searchTracksbyName(name, color, res) {
     let totalArtist;
     let artistList = [];
@@ -153,7 +157,7 @@ async function searchTracksbyName(name, color, res) {
 }
 
 
-
+// Function ID, Color 
 async function searchTracksbyID(id, color, res) {
     let totalArtist;
     let artistList = [];
@@ -244,13 +248,14 @@ async function searchTracksbyID(id, color, res) {
 
 
 
-
+// Index
 app.get('/', (req, res) => {
     // Currently Only Song Name
     res.sendFile(path.join(__dirname, 'public/index.html'))
 
 });
 
+// API
 app.get('/api', (req, res) => {
     let imageColor = '#000';
     let songName = req.query.name;
@@ -270,6 +275,7 @@ app.get('/api', (req, res) => {
     // res.send(songName)
 })
 
+// Running Server
 app.listen(port, () => {
     console.log(`app listening at http://localhost:${port}`)
 });
