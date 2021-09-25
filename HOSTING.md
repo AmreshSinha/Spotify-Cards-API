@@ -14,8 +14,9 @@ You can host this Service in your own Server or can embed in your project accord
 
 ## Guide
 
+**NOTE**: Go to spotify developer site and create a application with no scopes
+
 1) Hosting on Paas like Railway, Heroku, etc.
-    - Go to spotify developer site and create a application with no scopes
     - Make a .env and add
         - ```Client_ID``` var
         - ```Client_Secret``` var
