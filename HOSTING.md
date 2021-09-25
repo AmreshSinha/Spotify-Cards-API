@@ -24,7 +24,7 @@ You can host this Service in your own Server or can embed in your project accord
     - Edit ```Procfile``` and ```package.json``` according to the service you are using.
 
 2) Hosting on your own server (without docker)
-    - Make sure ```Screen``` is installed and running
+    - Make sure ```Screen``` is installed and running (If using Unix Based System)
     - Clone the Repo and run ```npm install```
     - Run the server ```node index.js```
 
