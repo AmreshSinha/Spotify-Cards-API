@@ -99,7 +99,7 @@ async function searchTracksbyName(name, color, res) {
     const text = 'SONG'
     const bottomText = 'LISTEN ON'
 
-    const data = await spotifyApi.searchTracks(name, {market:'US', limit:1, offset:5}).catch(err => res.send("Invalid ID"))
+    const data = await spotifyApi.searchTracks(name, {market:'US', limit:1, offset:5}).catch(err => res.send("Invalid Name"))
     // Track Name
     songName = data.body.tracks.items[0].album.name;
 
