@@ -1,1 +1,1 @@
-web: node index.js
+web: pm2 index.js
