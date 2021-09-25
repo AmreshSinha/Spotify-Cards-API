@@ -273,9 +273,19 @@ app.get('/api', (req, res) => {
         imageColor = '#' + req.query.color
     }
     if (songName != null && songID == null){
-        searchTracksbyName(songName, imageColor, res);
+        try {
+            searchTracksbyName(songName, imageColor, res);
+        }
+        catch (err) {
+            res.send(err.message);
+        }
     } else if (songID != null && songName == null) {
-        searchTracksbyID(songID, imageColor, res);
+        try {
+            searchTracksbyID(songID, imageColor, res);
+        }
+        catch (err) {
+            res.send(err.message);
+        }
     } else {
         res.send('name or id not provided')
     }
