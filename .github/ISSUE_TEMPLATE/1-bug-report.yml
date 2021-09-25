@@ -1,12 +1,12 @@
 name: "\U0001F41B Bug report"
-description: Create a report to help us improve
+description: Create a report to improve Spotify-Cards-API
 body:
   - type: markdown
     attributes:
       value: |
         Thank you for reporting an issue.
 
-        This issue tracker is for bugs and issues found within Spotify-Cards_API Project.
+        This issue tracker is for bugs and issues found within Spotify-Cards-API Project.
 
         Please fill in as much of the form below as you're able.
   - type: input
@@ -26,6 +26,9 @@ body:
   - type: textarea
     attributes:
       label: How often does it reproduce? Is there a required condition?
+  - type: textarea
+    attributes:
+      label: Is there any Package conflicting with other packages?
   - type: textarea
     attributes:
       label: What is the expected behavior?
