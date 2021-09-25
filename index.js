@@ -56,22 +56,6 @@ function newToken(){
 newToken();
 tokenRefreshInterval = setInterval(newToken, 1000 * 60 * 60);
 
-// spotifyApi.clientCredentialsGrant().then(
-//     function(data) {
-//     console.log('The access token expires in ' + data.body['expires_in']);
-//     // console.log('The access token is ' + data.body['access_token']);
-
-//     // Save the access token so that it's used in future calls
-//     spotifyApi.setAccessToken(data.body['access_token']);
-//     return data.body['access_token']
-//     },
-//     function(err) {
-//     console.log('Something went wrong when retrieving an access token', err);
-//     }
-// );
-
-
-
 
 
 
@@ -100,7 +84,7 @@ async function searchTracksbyName(name, color, res) {
     const text = 'SONG'
     const bottomText = 'LISTEN ON'
 
-    const data = await spotifyApi.searchTracks(name, {market:'US', limit:1, offset:5}).catch(err => res.send("Invalid Name"))
+    const data = await spotifyApi.searchTracks(name, {market:'US', limit:1, offset:5}).then(data => {
     // Track Name
     songName = data.body.tracks.items[0].album.name;
 
@@ -161,7 +145,10 @@ async function searchTracksbyName(name, color, res) {
             // console.log(cardURL) // Image which we want
             // fs.writeFileSync('./test.png', buffer)
         })
-    })
+        })
+    }
+    ).catch(err => res.send("Invalid Name"))
+
 
 }
 
@@ -190,7 +177,7 @@ async function searchTracksbyID(id, color, res) {
     const text = 'SONG'
     const bottomText = 'LISTEN ON'
 
-    const data = await spotifyApi.getTrack(id, {market:'US', limit:1, offset:5}).catch(err => res.send("Invalid ID"))
+    const data = await spotifyApi.getTrack(id, {market:'US', limit:1, offset:5}).then(data => {
     // Track Name
     songName = data.body.album.name;
 
@@ -246,11 +233,9 @@ async function searchTracksbyID(id, color, res) {
         })
     })
 
+    }).catch(err => res.send("Invalid ID"))
+
 }
-
-
-
-
 
 
 
