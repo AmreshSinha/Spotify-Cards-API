@@ -54,7 +54,7 @@ To log any issue or help in any issue, check out
 
 ## Host Your Own
 
-See HOSTING.md for instructions on how to host your own service
+See [HOSTING](https://github.com/AmreshSinha/Spotify-Cards-API/blob/master/HOSTING.md) for instructions on how to host your own service
 
 ## Contributing
 
