@@ -99,7 +99,7 @@ async function searchTracksbyName(name, color, res) {
     const text = 'SONG'
     const bottomText = 'LISTEN ON'
 
-    const data = await spotifyApi.searchTracks(name, {market:'US', limit:1, offset:5})
+    const data = await spotifyApi.searchTracks(name, {market:'US', limit:1, offset:5}).catch(err => res.send("Invalid ID"))
     // Track Name
     songName = data.body.tracks.items[0].album.name;
 
@@ -273,19 +273,9 @@ app.get('/api', (req, res) => {
         imageColor = '#' + req.query.color
     }
     if (songName != null && songID == null){
-        try {
-            searchTracksbyName(songName, imageColor, res);
-        }
-        catch (err) {
-            res.send(err.message);
-        }
+        searchTracksbyName(songName, imageColor, res);
     } else if (songID != null && songName == null) {
-        try {
-            searchTracksbyID(songID, imageColor, res);
-        }
-        catch (err) {
-            res.send(err.message);
-        }
+        searchTracksbyID(songID, imageColor, res);
     } else {
         res.send('name or id not provided')
     }
