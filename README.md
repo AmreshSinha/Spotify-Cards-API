@@ -65,7 +65,7 @@ See [HOSTING](https://github.com/AmreshSinha/Spotify-Cards-API/blob/master/HOSTI
 
 Both of the Issues are in <a href="https://github.com/AmreshSinha/Spotify-Cards-API/issues">ISSUES</a> section.
 
-Also, before making a PR checkout <a href="https://github.com/AmreshSinha/Spotify-Cards-API/CODE_OF_CONDUCT.md">Code of Conduct</a>
+Also, before making a PR checkout <a href="https://github.com/AmreshSinha/Spotify-Cards-API/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a>
 
 ## License
 
