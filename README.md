@@ -10,6 +10,7 @@ A unofficial open-source Spotify PromoCards API built to serve Song Cards. For m
 * [Support](#support)
 * [Release Versions](#release-versions)
 * [Hosting your own](#host-your-own)
+* [Run Locally](#run-locally)
 * [Contributing](#contributing)
 * [License](#license)
 
@@ -55,6 +56,22 @@ To log any issue or help in any issue, check out
 ## Host Your Own
 
 See [HOSTING](https://github.com/AmreshSinha/Spotify-Cards-API/blob/master/HOSTING.md) for instructions on how to host your own service
+
+## Run Locally
+
+1. Clone the Repository
+```
+git clone https://github.com/AmreshSinha/Spotify-Cards-API.git
+```
+2. Get into project folder and install node modules
+```
+npm i
+```
+3. Start and Run the Project
+```
+node index.js
+```
+Server will start on port 3000
 
 ## Contributing
 
