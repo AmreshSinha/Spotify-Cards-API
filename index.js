@@ -36,6 +36,7 @@ let songName, songArtist, songImageURL; // Not Used
 
 // Fonts for Card (Will switch back to Spotify Version of Gotham on production server)
 const { registerFont, createCanvas, loadImage } = require('canvas');
+const { runInNewContext } = require('vm')
 registerFont("./fonts/GothamBold.ttf", { family: "GothamBold" });
 registerFont("./fonts/Gotham-Black.otf", { family: "GothamBlack" });
 registerFont("./fonts/GothamBook.ttf", { family: "GothamBook" });
@@ -61,8 +62,18 @@ newToken();
 tokenRefreshInterval = setInterval(newToken, 1000 * 60 * 60);
 
 
-
-
+let rgb2hex=c=>'#'+c.match(/\d+/g).map(x=>(+x).toString(16).padStart(2,0)).join``
+async function getAverageColor(img) {
+    return new Promise(resolve => {
+        const tempCanvas = createCanvas(1080, 1080);
+        const tempCtx = tempCanvas.getContext('2d');
+        tempCtx.imageSmoothingEnabled = true;
+        tempCtx.drawImage(img, 0, 0, 1, 1);
+        const rgb = tempCtx.getImageData(0, 0, 1, 1).data.slice(0,3).join(", ")
+        const hex = rgb2hex(rgb)
+        resolve(hex);
+    });
+}
 
 // Function, Name, Color
 async function searchTracksbyName(name, color, res) {
@@ -88,7 +99,12 @@ async function searchTracksbyName(name, color, res) {
     const text = 'SONG'
     const bottomText = 'LISTEN ON'
 
-    const data = await spotifyApi.searchTracks(name, {market:'US', limit:1, offset:5}).then(data => {
+    const data = await spotifyApi.searchTracks(name, {market:'US', limit:1, offset:5})
+    if (data.body.tracks.total === 0) {
+        res.send("Invalid name")
+        return false;
+    }
+
     // Track Name
     songName = data.body.tracks.items[0].album.name;
 
@@ -103,7 +119,11 @@ async function searchTracksbyName(name, color, res) {
 
     const canvas = createCanvas(width, height);
     const context = canvas.getContext('2d');
-    context.fillStyle = color; // theme color extraction implementation still to be done
+    if (color === "#000") {
+        const image = await loadImage(imageURL)
+        color = await getAverageColor(image)
+    }
+    context.fillStyle = color; 
     context.fillRect(0, 0, width, height)
 
     context.textBaseline = 'top'
@@ -149,11 +169,7 @@ async function searchTracksbyName(name, color, res) {
             // console.log(cardURL) // Image which we want
             // fs.writeFileSync('./test.png', buffer)
         })
-        })
-    }
-    ).catch(err => res.send("Invalid Name"))
-
-
+    })
 }
 
 
@@ -181,7 +197,14 @@ async function searchTracksbyID(id, color, res) {
     const text = 'SONG'
     const bottomText = 'LISTEN ON'
 
-    const data = await spotifyApi.getTrack(id, {market:'US', limit:1, offset:5}).then(data => {
+    var data;
+    try {
+        data = await spotifyApi.getTrack(id, {market:'US', limit:1, offset:5})
+    } catch (e) {
+        res.send("Invalid ID")
+        return false;
+    }
+
     // Track Name
     songName = data.body.album.name;
 
@@ -197,7 +220,11 @@ async function searchTracksbyID(id, color, res) {
 
     const canvas = createCanvas(width, height);
     const context = canvas.getContext('2d');
-    context.fillStyle = color; // theme color extraction implementation still to be done
+    if (color === "#000") {
+        const image = await loadImage(imageURL)
+        color = await getAverageColor(image)
+    }
+    context.fillStyle = color;
     context.fillRect(0, 0, width, height)
 
     context.textBaseline = 'top'
@@ -236,9 +263,6 @@ async function searchTracksbyID(id, color, res) {
             res.end(img)
         })
     })
-
-    }).catch(err => res.send("Invalid ID"))
-
 }
 
 
