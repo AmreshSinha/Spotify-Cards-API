@@ -36,7 +36,6 @@ let songName, songArtist, songImageURL; // Not Used
 
 // Fonts for Card (Will switch back to Spotify Version of Gotham on production server)
 const { registerFont, createCanvas, loadImage } = require('canvas');
-const { runInNewContext } = require('vm')
 registerFont("./fonts/GothamBold.ttf", { family: "GothamBold" });
 registerFont("./fonts/Gotham-Black.otf", { family: "GothamBlack" });
 registerFont("./fonts/GothamBook.ttf", { family: "GothamBook" });
@@ -100,13 +99,13 @@ async function searchTracksbyName(name, color, res) {
     const bottomText = 'LISTEN ON'
 
     const data = await spotifyApi.searchTracks(name, {market:'US', limit:1, offset:5})
-    if (data.body.tracks.total === 0) {
+    if (data.body.tracks.total === 0 || data.body.tracks.items.length === 0) {
         res.send("Invalid name")
         return false;
     }
 
     // Track Name
-    songName = data.body.tracks.items[0].album.name;
+    songName = data.body.tracks.items[0].name;
 
     // Image URL 640x640
     imageURL = data.body.tracks.items[0].album.images[0].url
@@ -206,7 +205,7 @@ async function searchTracksbyID(id, color, res) {
     }
 
     // Track Name
-    songName = data.body.album.name;
+    songName = data.body.name;
 
     // Image URL 640x640
     imageURL = data.body.album.images[0].url
