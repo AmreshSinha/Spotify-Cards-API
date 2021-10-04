@@ -1,10 +1,5 @@
-const fetch = require('cross-fetch') // Not Used
 const path = require("path")
 const express = require('express')
-const bodyParser = require('body-parser') // Not Used
-const url = require('url') // Not Used
-const querystring = require('querystring') // Not Used
-const fs = require('fs') // Not Used
 const SpotifyWebApi = require('spotify-web-api-node')
 const cors = require('cors');
 
@@ -134,14 +129,7 @@ async function searchTracksbyName(name, color, res) {
     context.font = 'bold 100px GothamBlack'
     context.fillText(songName, songNameX, songNameY)
     context.font = 'bold 40px GothamBook'
-    for (let i = 0; i < artistList.length; i++) {
-        if (i==artistList.length-1) {
-            artistString += artistList[i]
-        }
-        else {
-            artistString += artistList[i] + ", "
-        }
-    }
+    artistString = artistList.join(", ")
 
     context.fillText(artistString, songArtistX, songArtistY)
     context.font = '20px GothamBold'
@@ -159,14 +147,6 @@ async function searchTracksbyName(name, color, res) {
                 'Content-Length': img.length
             })
             res.end(img)
-            // const spotifyCard = {
-            //     spotifyCardURL: cardURL
-            // }
-            // res.render('api', spotifyCard)
-            // res.send(cardURL)
-            // res.write('<img src = "'+cardURL+'">');
-            // console.log(cardURL) // Image which we want
-            // fs.writeFileSync('./test.png', buffer)
         })
     })
 }
@@ -235,14 +215,10 @@ async function searchTracksbyID(id, color, res) {
     context.font = 'bold 100px GothamBlack'
     context.fillText(songName, songNameX, songNameY)
     context.font = 'bold 40px GothamBook'
-    for (let i = 0; i < artistList.length; i++) {
-        if (i==artistList.length-1) {
-            artistString += artistList[i]
-        }
-        else {
-            artistString += artistList[i] + ", "
-        }
-    }
+
+    artistString = artistList.join(", ")
+    console.log(artistList)
+    console.log(artistString)
 
     context.fillText(artistString, songArtistX, songArtistY)
     context.font = '20px GothamBold'
@@ -293,9 +269,6 @@ app.get('/api', (req, res) => {
     } else {
         res.send('name or id not provided')
     }
-    
-    // songName, songArtist, songImageURL = SpotifyTrackSearch('Alchemy')
-    // res.send(songName)
 })
 
 // Running Server
