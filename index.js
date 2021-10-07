@@ -267,7 +267,7 @@ app.get('/api', (req, res) => {
     } else if (songID != null && songName == null) {
         searchTracksbyID(songID, imageColor, res);
     } else {
-        res.send('name or id not provided')
+        res.send('name or id not provided or both provided instead of one')
     }
 })
 
