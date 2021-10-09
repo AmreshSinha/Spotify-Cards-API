@@ -160,8 +160,8 @@ async function searchTracksbyID(id, color, orientation, res) {
     let songName;
     let imageURL;
     var width, height, imageX, imageY, imageWidth, imageHeight,
-    songX, songY, songNameX, songNameY, songArtistX, songArtistY, 
-    bottomTextX, bottomTextY, dmX, dmY, dmW, dmH;
+    songX, songY, songFont, songNameX, songNameY, songArtistX, songArtistY, songArtistFont,
+    bottomTextX, bottomTextY, bottomTextFont, dmX, dmY, dmW, dmH;
     const text = 'SONG'
     const bottomText = 'LISTEN ON'
 
@@ -176,10 +176,13 @@ async function searchTracksbyID(id, color, orientation, res) {
         songY = 200
         songNameX = 560
         songNameY = 250
+        songFont = "bold 100px"
         songArtistX = 560
         songArtistY = 380
+        songArtistFont = "bold 40px"
         bottomTextX = 805
         bottomTextY = 542
+        bottomTextFont = "20px"
         dmX = 960
         dmY = 520
         dmW = 199.64
@@ -187,22 +190,23 @@ async function searchTracksbyID(id, color, orientation, res) {
     } else if (orientation === "square") {
         width = 1080;
         height = 1080;
-        imageX = 105;
-        imageY = 115;
-        imageWidth = 400
-        imageHeight = 400
-        songX = 560
-        songY = 200
-        songNameX = 560
-        songNameY = 250
-        songArtistX = 560
-        songArtistY = 380
-        bottomTextX = 805
-        bottomTextY = 542
-        dmX = 960
-        dmY = 520
-        dmW = 199.64
-        dmH = 60
+        imageX = 0;
+        imageY = 380;
+        imageWidth = 700
+        imageHeight = 700
+        songNameX = 70
+        songNameY = 50
+        songFont = "50px"
+        songArtistX = 70
+        songArtistY = 180
+        songArtistFont = "68px"
+        bottomTextX = 790
+        bottomTextFont = "30px"
+        bottomTextY = 850
+        dmX = 770
+        dmY = 920
+        dmW = 250
+        dmH = 75
     }
 
     var data;
@@ -238,17 +242,19 @@ async function searchTracksbyID(id, color, orientation, res) {
     context.textBaseline = 'top'
 
     context.fillStyle = '#fff'
-    context.font = 'bold 22px GothamBlack'
-    var ctext = text.split("").join(String.fromCharCode(8202))
-    context.fillText(ctext, songX, songY)
-    context.font = 'bold 100px GothamBlack'
+    if (orientation === "landscape") {
+        context.font = 'bold 22px GothamBlack'
+        var ctext = text.split("").join(String.fromCharCode(8202))
+        context.fillText(ctext, songX, songY)
+    }
+    context.font = `${songFont} GothamBook`
     context.fillText(songName, songNameX, songNameY)
-    context.font = 'bold 40px GothamBook'
 
+    context.font = `${songArtistFont} GothamBook`
     artistString = artistList.join(", ")
-
     context.fillText(artistString, songArtistX, songArtistY)
-    context.font = '20px GothamBold'
+
+    context.font = `${bottomTextFont} GothamBold`
     var cbottomText = bottomText.split("").join(String.fromCharCode(8202))
     context.fillText(cbottomText, bottomTextX, bottomTextY)
     loadImage('./logo/Spotify_logo_with_text.svg').then(image => {
