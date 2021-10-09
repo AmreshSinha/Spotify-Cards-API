@@ -153,28 +153,57 @@ async function searchTracksbyName(name, color, res) {
 
 
 // Function ID, Color 
-async function searchTracksbyID(id, color, res) {
+async function searchTracksbyID(id, color, orientation, res) {
     let totalArtist;
     let artistList = [];
     let artistString = '';
     let songName;
     let imageURL;
-    const width = 1200
-    const height = 630
-    const imageX = 105;
-    const imageY = 115;
-    const imageWidth = 400
-    const imageHeight = 400
-    const songX = 560
-    const songY = 200
-    const songNameX = 560
-    const songNameY = 250
-    const songArtistX = 560
-    const songArtistY = 380
-    const bottomTextX = 805
-    const bottomTextY = 542
+    var width, height, imageX, imageY, imageWidth, imageHeight,
+    songX, songY, songNameX, songNameY, songArtistX, songArtistY, 
+    bottomTextX, bottomTextY, dmX, dmY, dmW, dmH;
     const text = 'SONG'
     const bottomText = 'LISTEN ON'
+
+    if (orientation === "landscape") {
+        width = 1200
+        height = 630
+        imageX = 105;
+        imageY = 115;
+        imageWidth = 400
+        imageHeight = 400
+        songX = 560
+        songY = 200
+        songNameX = 560
+        songNameY = 250
+        songArtistX = 560
+        songArtistY = 380
+        bottomTextX = 805
+        bottomTextY = 542
+        dmX = 960
+        dmY = 520
+        dmW = 199.64
+        dmH = 60
+    } else if (orientation === "square") {
+        width = 1080;
+        height = 1080;
+        imageX = 105;
+        imageY = 115;
+        imageWidth = 400
+        imageHeight = 400
+        songX = 560
+        songY = 200
+        songNameX = 560
+        songNameY = 250
+        songArtistX = 560
+        songArtistY = 380
+        bottomTextX = 805
+        bottomTextY = 542
+        dmX = 960
+        dmY = 520
+        dmW = 199.64
+        dmH = 60
+    }
 
     var data;
     try {
@@ -217,15 +246,13 @@ async function searchTracksbyID(id, color, res) {
     context.font = 'bold 40px GothamBook'
 
     artistString = artistList.join(", ")
-    console.log(artistList)
-    console.log(artistString)
 
     context.fillText(artistString, songArtistX, songArtistY)
     context.font = '20px GothamBold'
     var cbottomText = bottomText.split("").join(String.fromCharCode(8202))
     context.fillText(cbottomText, bottomTextX, bottomTextY)
     loadImage('./logo/Spotify_logo_with_text.svg').then(image => {
-        context.drawImage(image, 960, 520, 199.64, 60)
+        context.drawImage(image, dmX, dmY, dmW, dmH)
         loadImage(imageURL).then(image=> {
             context.drawImage(image, imageX, imageY, imageWidth, imageHeight)
             const buffer = canvas.toBuffer('image/png')
@@ -240,14 +267,6 @@ async function searchTracksbyID(id, color, res) {
     })
 }
 
-
-
-
-
-
-
-
-// Index
 app.get('/', (req, res) => {
     // Currently Only Song Name
     res.sendFile(path.join(__dirname, 'public/index.html'))
@@ -259,13 +278,18 @@ app.get('/api', (req, res) => {
     let imageColor = '#000';
     let songName = req.query.name;
     let songID = req.query.id;
+    let orientation = req.query.orientation;
     if (req.query.color != null){
         imageColor = '#' + req.query.color
+    }
+    console.log(orientation)
+    if (orientation === null || !["landscape", "square"].includes(orientation)) {
+        orientation = "landscape"
     }
     if (songName != null && songID == null){
         searchTracksbyName(songName, imageColor, res);
     } else if (songID != null && songName == null) {
-        searchTracksbyID(songID, imageColor, res);
+        searchTracksbyID(songID, imageColor, orientation, res);
     } else {
         res.send('name or id not provided or both provided instead of one')
     }
