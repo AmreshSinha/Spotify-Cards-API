@@ -191,19 +191,19 @@ async function searchTracksbyID(id, color, orientation, res) {
         width = 1080;
         height = 1080;
         imageX = 0;
-        imageY = 380;
-        imageWidth = 700
-        imageHeight = 700
+        imageY = 330;
+        imageWidth = 750
+        imageHeight = 750
         songNameX = 70
         songNameY = 50
         songFont = "50px"
         songArtistX = 70
-        songArtistY = 180
+        songArtistY = 160
         songArtistFont = "68px"
-        bottomTextX = 790
-        bottomTextFont = "30px"
+        bottomTextX = 815
         bottomTextY = 850
-        dmX = 770
+        bottomTextFont = "30px"
+        dmX = 795
         dmY = 920
         dmW = 250
         dmH = 75
@@ -250,7 +250,7 @@ async function searchTracksbyID(id, color, orientation, res) {
     context.font = `${songFont} GothamBook`
     context.fillText(songName, songNameX, songNameY)
 
-    context.font = `${songArtistFont} GothamBook`
+    context.font = `${songArtistFont} GothamBold`
     artistString = artistList.join(", ")
     context.fillText(artistString, songArtistX, songArtistY)
 
