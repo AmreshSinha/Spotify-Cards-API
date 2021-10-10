@@ -70,28 +70,61 @@ async function getAverageColor(img) {
 }
 
 // Function, Name, Color
-async function searchTracksbyName(name, color, res) {
+async function searchTracksbyName(name, color, orientation, res) {
     let totalArtist;
     let artistList = [];
     let artistString = '';
     let songName;
     let imageURL;
-    const width = 1200
-    const height = 630
-    const imageX = 105;
-    const imageY = 115;
-    const imageWidth = 400
-    const imageHeight = 400
-    const songX = 560
-    const songY = 200
-    const songNameX = 560
-    const songNameY = 250 // 260
-    const songArtistX = 560
-    const songArtistY = 380
-    const bottomTextX = 805
-    const bottomTextY = 542
+    var width, height, imageX, imageY, imageWidth, imageHeight,
+    songX, songY, songFont, songNameX, songNameY, songArtistX, songArtistY, songArtistFont,
+    bottomTextX, bottomTextY, bottomTextFont, dmX, dmY, dmW, dmH;
     const text = 'SONG'
     const bottomText = 'LISTEN ON'
+
+    if (orientation === "landscape") {
+        width = 1200
+        height = 630
+        imageX = 105;
+        imageY = 115;
+        imageWidth = 400
+        imageHeight = 400
+        songX = 560
+        songY = 200
+        songNameX = 560
+        songNameY = 250
+        songFont = "bold 100px"
+        songArtistX = 560
+        songArtistY = 380
+        songArtistFont = "bold 40px"
+        bottomTextX = 805
+        bottomTextY = 542
+        bottomTextFont = "20px"
+        dmX = 960
+        dmY = 520
+        dmW = 199.64
+        dmH = 60
+    } else if (orientation === "square") {
+        width = 1080;
+        height = 1080;
+        imageX = 0;
+        imageY = 330;
+        imageWidth = 750
+        imageHeight = 750
+        songNameX = 70
+        songNameY = 50
+        songFont = "50px"
+        songArtistX = 70
+        songArtistY = 160
+        songArtistFont = "68px"
+        bottomTextX = 815
+        bottomTextY = 850
+        bottomTextFont = "30px"
+        dmX = 795
+        dmY = 920
+        dmW = 250
+        dmH = 75
+    }
 
     const data = await spotifyApi.searchTracks(name, {market:'US', limit:1, offset:0})
     if (data.body.tracks.total === 0 || data.body.tracks.items.length === 0) {
@@ -117,26 +150,29 @@ async function searchTracksbyName(name, color, res) {
         const image = await loadImage(imageURL)
         color = await getAverageColor(image)
     }
-    context.fillStyle = color; 
+    context.fillStyle = color;
     context.fillRect(0, 0, width, height)
 
     context.textBaseline = 'top'
 
     context.fillStyle = '#fff'
-    context.font = 'bold 22px GothamBlack'
-    var ctext = text.split("").join(String.fromCharCode(8202))
-    context.fillText(ctext, songX, songY)
-    context.font = 'bold 100px GothamBlack'
+    if (orientation === "landscape") {
+        context.font = 'bold 22px GothamBlack'
+        var ctext = text.split("").join(String.fromCharCode(8202))
+        context.fillText(ctext, songX, songY)
+    }
+    context.font = `${songFont} GothamBold`
     context.fillText(songName, songNameX, songNameY)
-    context.font = 'bold 40px GothamBook'
-    artistString = artistList.join(", ")
 
+    context.font = `${songArtistFont} GothamBook`
+    artistString = artistList.join(", ")
     context.fillText(artistString, songArtistX, songArtistY)
-    context.font = '20px GothamBold'
+
+    context.font = `${bottomTextFont} GothamBold`
     var cbottomText = bottomText.split("").join(String.fromCharCode(8202))
     context.fillText(cbottomText, bottomTextX, bottomTextY)
     loadImage('./logo/Spotify_logo_with_text.svg').then(image => {
-        context.drawImage(image, 960, 520, 199.64, 60)
+        context.drawImage(image, dmX, dmY, dmW, dmH)
         loadImage(imageURL).then(image=> {
             context.drawImage(image, imageX, imageY, imageWidth, imageHeight)
             const buffer = canvas.toBuffer('image/png')
@@ -247,10 +283,10 @@ async function searchTracksbyID(id, color, orientation, res) {
         var ctext = text.split("").join(String.fromCharCode(8202))
         context.fillText(ctext, songX, songY)
     }
-    context.font = `${songFont} GothamBook`
+    context.font = `${songFont} GothamBold`
     context.fillText(songName, songNameX, songNameY)
 
-    context.font = `${songArtistFont} GothamBold`
+    context.font = `${songArtistFont} GothamBook`
     artistString = artistList.join(", ")
     context.fillText(artistString, songArtistX, songArtistY)
 
@@ -293,7 +329,7 @@ app.get('/api', (req, res) => {
         orientation = "landscape"
     }
     if (songName != null && songID == null){
-        searchTracksbyName(songName, imageColor, res);
+        searchTracksbyName(songName, imageColor, orientation, res);
     } else if (songID != null && songName == null) {
         searchTracksbyID(songID, imageColor, orientation, res);
     } else {
