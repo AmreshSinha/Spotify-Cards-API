@@ -79,6 +79,7 @@ Server will start on port 3000
 
 * Text Wrap: If the Song Name is too long then text size should decrease and wrap into 2 lines. Spacing between "SONG" and Song Name, and Song Name and Artist name should change accordingly.
 * <strike>Theme Color Extraction from image instead of Black as Default Color.</strike> Done Thanks to <a href="https://github.com/delivey">@delivey</a>
+* <strike>Adding Portrait Orientation.</strike> Done Thanks to <a href="https://github.com/delivey">@delivey</a>
 
 All the Issues are in <a href="https://github.com/AmreshSinha/Spotify-Cards-API/issues">ISSUES</a> section.
 
