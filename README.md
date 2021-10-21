@@ -37,6 +37,15 @@ https://spotify-cards.up.railway.app/api?id={song id}&color={color hex without #
 https://spotify-cards.up.railway.app/api?id=05iALOptaNoV3EmXnxz1IJ&color=A0C3D2
 ```
 
+### Orientation
+
+**Landscape**{Default} or **Square**
+
+**Example**
+```
+https://spotify-cards.up.railway.app/api?id={song id}&color={color hex without #}&orientation={landscape/square}
+```
+
 ### How to get Spotify Song Track ID?
 
 * Go to your song
