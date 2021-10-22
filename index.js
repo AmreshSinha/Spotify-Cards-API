@@ -3,6 +3,7 @@ const express = require('express')
 const SpotifyWebApi = require('spotify-web-api-node')
 const cors = require('cors');
 
+// Express Config
 const app = express()
 const port = process.env.PORT || 3000
 
@@ -55,7 +56,7 @@ function newToken(){
 newToken();
 tokenRefreshInterval = setInterval(newToken, 1000 * 60 * 60);
 
-
+// Theme Color Extraction
 let rgb2hex=c=>'#'+c.match(/\d+/g).map(x=>(+x).toString(16).padStart(2,0)).join``
 async function getAverageColor(img) {
     return new Promise(resolve => {
@@ -309,6 +310,7 @@ async function searchTracksbyID(id, color, orientation, res) {
     })
 }
 
+// Index
 app.get('/', (req, res) => {
     // Currently Only Song Name
     res.sendFile(path.join(__dirname, 'public/index.html'))
