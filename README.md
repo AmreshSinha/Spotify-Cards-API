@@ -76,7 +76,11 @@ git clone https://github.com/AmreshSinha/Spotify-Cards-API.git
 ```
 npm i
 ```
-3. Start and Run the Project
+3. Go to Spotify Developer Dashboard and Create a New Application with no scopes
+Make a .env and add
+- `Client_ID` var with your Spotify Dev Application Details
+- `Client_Secret` var with your Spotify Dev Application Details
+4. Start and Run the Project
 ```
 node index.js
 ```
