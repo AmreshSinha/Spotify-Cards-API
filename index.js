@@ -489,7 +489,9 @@ app.get('/api', (req, res) => {
     if (orientation === null || !["landscape", "square"].includes(orientation)) {
         orientation = "landscape"
     }
-    if (songName != null && songID == null){
+    if (colorGiven && (!isHexCode(req.query.color))) {
+        res.send('given hex is not valid, make sure not to add # at start');
+    } else if (songName != null && songID == null){
         searchTracksbyName(songName, imageColor, orientation, res, colorGiven);
     } else if (songID != null && songName == null) {
         searchTracksbyID(songID, imageColor, orientation, res, colorGiven);
@@ -502,3 +504,16 @@ app.get('/api', (req, res) => {
 app.listen(port, () => {
     console.log(`app listening at http://localhost:${port}`)
 });
+
+isHexCode = function (hex) {
+    allowedChars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'A', 'B', 'C', 'D', 'E', 'F'];
+    if (hex.length != 3 && hex.length != 6) {
+        return false;
+    }
+    for (let i = 0; i < hex.length; i++) {
+        if (!allowedChars.includes(hex[i])) {
+            return false;
+        }
+    }
+    return true;
+}
