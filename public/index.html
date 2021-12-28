@@ -132,21 +132,20 @@
           *Results can differ as there can be another song with the Same Name
         </p>
         <code>https://spotify-cards.up.railway.app/api?name={song
-            name}&color={color hex without #}</code>
+          name}</code>
         <br />
         <br />
         <p class="fw-bold fs-6">Example</p>
-        <code>https://spotify-cards.up.railway.app/api?name=Silver%20Lining&color=A0C3D2</code>
+        <code>https://spotify-cards.up.railway.app/api?name=Silver%20Lining</code>
         <hr />
         <p class="fw-bold fs-3">
           By Song Track ID <span class="lead fs-3">(Recommended)</span>
         </p>
-        <code>https://spotify-cards.up.railway.app/api?id={song id}&color={color
-            hex without #}</code>
+        <code>https://spotify-cards.up.railway.app/api?id={song id}</code>
         <br />
         <br />
         <p class="fw-bold fs-6">Example</p>
-        <code>https://spotify-cards.up.railway.app/api?id=05iALOptaNoV3EmXnxz1IJ&color=A0C3D2</code>
+        <code>https://spotify-cards.up.railway.app/api?id=05iALOptaNoV3EmXnxz1IJ</code>
         <br />
         <br />
         <p class="fw-bold fs-6">How to get Spotify Song Track ID?</p>
@@ -159,6 +158,17 @@
             The ID after <code>spotify:track:</code> is the Spotify Song Track ID
           </li>
         </ul>
+        <hr />
+        <p class="fw-bolder fs-2">Color</p>
+        <hr />
+        <p class="fw-light">
+          Type hex code without #. If not specified, the best color corresponding to the song image will be used.
+        </p>
+        <code>https://spotify-cards.up.railway.app/api?id={song id}&color={color hex without #}</code>
+        <br />
+        <br />
+        <p class="fw-bold fs-6">Example</p>
+        <code>https://spotify-cards.up.railway.app/api?id=05iALOptaNoV3EmXnxz1IJ&color=A0C3D2</code>
         <hr />
         <p class="fw-bolder fs-2">Orientation</p>
         <hr />
