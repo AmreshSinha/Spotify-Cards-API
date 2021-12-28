@@ -71,7 +71,7 @@ async function getAverageColor(img) {
 }
 
 // Function, Name, Color
-async function searchTracksbyName(name, color, orientation, res) {
+async function searchTracksbyName(name, color, orientation, res, colorGiven) {
     let totalArtist;
     let artistList = [];
     let artistString = '';
@@ -151,7 +151,7 @@ async function searchTracksbyName(name, color, orientation, res) {
 
     const canvas = createCanvas(width, height);
     const context = canvas.getContext('2d');
-    if (color === "#000") {
+    if (!colorGiven) {
         const image = await loadImage(imageURL)
         color = await getAverageColor(image)
     }
@@ -205,7 +205,7 @@ async function searchTracksbyName(name, color, orientation, res) {
 
 
 // Function ID, Color 
-async function searchTracksbyID(id, color, orientation, res) {
+async function searchTracksbyID(id, color, orientation, res, colorGiven) {
     let totalArtist;
     let artistList = [];
     let artistString = '';
@@ -288,7 +288,7 @@ async function searchTracksbyID(id, color, orientation, res) {
 
     const canvas = createCanvas(width, height);
     const context = canvas.getContext('2d');
-    if (color === "#000") {
+    if (!colorGiven) {
         const image = await loadImage(imageURL)
         color = await getAverageColor(image)
     }
@@ -478,7 +478,8 @@ app.get('/', (req, res) => {
 
 // API
 app.get('/api', (req, res) => {
-    let imageColor = '#000';
+    let imageColor;
+    let colorGiven = req.query.color != null;
     let songName = req.query.name;
     let songID = req.query.id;
     let orientation = req.query.orientation;
@@ -489,9 +490,9 @@ app.get('/api', (req, res) => {
         orientation = "landscape"
     }
     if (songName != null && songID == null){
-        searchTracksbyName(songName, imageColor, orientation, res);
+        searchTracksbyName(songName, imageColor, orientation, res, colorGiven);
     } else if (songID != null && songName == null) {
-        searchTracksbyID(songID, imageColor, orientation, res);
+        searchTracksbyID(songID, imageColor, orientation, res, colorGiven);
     } else {
         res.send('name or id not provided or both provided instead of one')
     }
