@@ -417,7 +417,7 @@ function textWrap(text, max, min, maxWidth, ctx, x, y, fontPre, fontPost) {
                         if (currentLineWidth < maxWidth) {
                             secondLine += " " + word;
                         } else {
-                            text = firstLine + " " + secondLine
+                            text = firstLine + " " + secondLine + "...";
                             break;
                         }
                     }
@@ -461,7 +461,7 @@ function textWrap(text, max, min, maxWidth, ctx, x, y, fontPre, fontPost) {
                 } else {
                     ctx.fillText(firstLine, x, y);
                     secondLine = words.slice(_).join(" ");
-                    ctx.fillText(secondLine + "...", x, y + currentFontSize);
+                    ctx.fillText(secondLine, x, y + currentFontSize);
                     return currentFontSize;
                 }
             }
