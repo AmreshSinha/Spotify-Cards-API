@@ -71,7 +71,7 @@ async function getAverageColor(img) {
 }
 
 // Function, Name, Color
-async function searchTracksbyName(name, color, orientation, res) {
+async function searchTracksbyName(name, color, orientation, res, colorGiven) {
     let totalArtist;
     let artistList = [];
     let artistString = '';
@@ -147,7 +147,7 @@ async function searchTracksbyName(name, color, orientation, res) {
 
     const canvas = createCanvas(width, height);
     const context = canvas.getContext('2d');
-    if (color === "#000") {
+    if (!colorGiven) {
         const image = await loadImage(imageURL)
         color = await getAverageColor(image)
     }
@@ -190,7 +190,7 @@ async function searchTracksbyName(name, color, orientation, res) {
 
 
 // Function ID, Color 
-async function searchTracksbyID(id, color, orientation, res) {
+async function searchTracksbyID(id, color, orientation, res, colorGiven) {
     let totalArtist;
     let artistList = [];
     let artistString = '';
@@ -269,7 +269,7 @@ async function searchTracksbyID(id, color, orientation, res) {
 
     const canvas = createCanvas(width, height);
     const context = canvas.getContext('2d');
-    if (color === "#000") {
+    if (!colorGiven) {
         const image = await loadImage(imageURL)
         color = await getAverageColor(image)
     }
@@ -319,7 +319,8 @@ app.get('/', (req, res) => {
 
 // API
 app.get('/api', (req, res) => {
-    let imageColor = '#000';
+    let imageColor;
+    let colorGiven = req.query.color != null;
     let songName = req.query.name;
     let songID = req.query.id;
     let orientation = req.query.orientation;
@@ -330,10 +331,12 @@ app.get('/api', (req, res) => {
     if (orientation === null || !["landscape", "square"].includes(orientation)) {
         orientation = "landscape"
     }
-    if (songName != null && songID == null){
-        searchTracksbyName(songName, imageColor, orientation, res);
+    if (colorGiven && (!isHexCode(req.query.color))) {
+        res.send('given hex is not valid, make sure not to add # at start');
+    } else if (songName != null && songID == null){
+        searchTracksbyName(songName, imageColor, orientation, res, colorGiven);
     } else if (songID != null && songName == null) {
-        searchTracksbyID(songID, imageColor, orientation, res);
+        searchTracksbyID(songID, imageColor, orientation, res, colorGiven);
     } else {
         res.send('name or id not provided or both provided instead of one')
     }
@@ -343,3 +346,16 @@ app.get('/api', (req, res) => {
 app.listen(port, () => {
     console.log(`app listening at http://localhost:${port}`)
 });
+
+isHexCode = function (hex) {
+    allowedChars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'A', 'B', 'C', 'D', 'E', 'F'];
+    if (hex.length != 3 && hex.length != 6) {
+        return false;
+    }
+    for (let i = 0; i < hex.length; i++) {
+        if (!allowedChars.includes(hex[i])) {
+            return false;
+        }
+    }
+    return true;
+}
