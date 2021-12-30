@@ -95,9 +95,13 @@ async function searchTracksbyName(name, color, orientation, res, colorGiven) {
         songNameX = 560
         songNameY = 250
         songFont = "bold 100px"
+        songFontMax = "100"
+        songFontMin = "70"
         songArtistX = 560
         songArtistY = 380
         songArtistFont = "bold 40px"
+        songArtistFontMax = "40"
+        songArtistFontMin = "30"
         bottomTextX = 805
         bottomTextY = 542
         bottomTextFont = "20px"
@@ -162,12 +166,23 @@ async function searchTracksbyName(name, color, orientation, res, colorGiven) {
         var ctext = text.split("").join(String.fromCharCode(8202))
         context.fillText(ctext, songX, songY)
     }
-    context.font = `${songFont} GothamBold`
-    context.fillText(songName, songNameX, songNameY)
+    if (orientation === "landscape") {
+        // textWrap returns the downward shift that next element has to undergo
+        songArtistY += textWrap(songName, songFontMax, songFontMin, 580, context, songNameX, songNameY, "bold ", "px GothamBold");
+    } else {
+        context.font = `${songFont} GothamBold`
+        context.fillText(songName, songNameX, songNameY)
+    }
 
-    context.font = `${songArtistFont} GothamBook`
     artistString = artistList.join(", ")
-    context.fillText(artistString, songArtistX, songArtistY)
+    if (orientation === "landscape") {
+        let downShift = textWrap(artistString, songArtistFontMax, songArtistFontMin, 500, context, songArtistX, songArtistY, "bold ", "px GothamBook");
+        bottomTextY += downShift;
+        dmY += downShift;
+    } else {
+        context.font = `${songArtistFont} GothamBook`
+        context.fillText(artistString, songArtistX, songArtistY)
+    }
 
     context.font = `${bottomTextFont} GothamBold`
     var cbottomText = bottomText.split("").join(String.fromCharCode(8202))
@@ -214,9 +229,13 @@ async function searchTracksbyID(id, color, orientation, res, colorGiven) {
         songNameX = 560
         songNameY = 250
         songFont = "bold 100px"
+        songFontMax = "100"
+        songFontMin = "70"
         songArtistX = 560
         songArtistY = 380
         songArtistFont = "bold 40px"
+        songArtistFontMax = "40"
+        songArtistFontMin = "30"
         bottomTextX = 805
         bottomTextY = 542
         bottomTextFont = "20px"
@@ -284,12 +303,22 @@ async function searchTracksbyID(id, color, orientation, res, colorGiven) {
         var ctext = text.split("").join(String.fromCharCode(8202))
         context.fillText(ctext, songX, songY)
     }
-    context.font = `${songFont} GothamBold`
-    context.fillText(songName, songNameX, songNameY)
+    if (orientation === "landscape") {
+        songArtistY += textWrap(songName, songFontMax, songFontMin, 580, context, songNameX, songNameY, "bold ", "px GothamBold");
+    } else {
+        context.font = `${songFont} GothamBold`
+        context.fillText(songName, songNameX, songNameY)
+    }
 
-    context.font = `${songArtistFont} GothamBook`
     artistString = artistList.join(", ")
-    context.fillText(artistString, songArtistX, songArtistY)
+    if (orientation === "landscape") {
+        let downShift = textWrap(artistString, songArtistFontMax, songArtistFontMin, 500, context, songArtistX, songArtistY, "bold ", "px GothamBook");
+        bottomTextY += downShift;
+        dmY += downShift;
+    } else {
+        context.font = `${songArtistFont} GothamBook`
+        context.fillText(artistString, songArtistX, songArtistY)
+    }
 
     context.font = `${bottomTextFont} GothamBold`
     var cbottomText = bottomText.split("").join(String.fromCharCode(8202))
@@ -310,6 +339,136 @@ async function searchTracksbyID(id, color, orientation, res, colorGiven) {
     })
 }
 
+function textWrap(text, max, min, maxWidth, ctx, x, y, fontPre, fontPost) {
+    let currentFontSize;
+    for(currentFontSize = parseInt(max); currentFontSize >= parseInt(min); currentFontSize--) {
+        ctx.font = fontPre + currentFontSize + fontPost;
+        let currentWidth = ctx.measureText(text).width;
+        if (currentWidth < maxWidth) {
+            break;
+        }
+    }
+
+    if (currentFontSize >= parseInt(min)) {
+        // we have found an appropriate font size for 1 line
+        ctx.fillText(text, x, y);
+        return 0;
+    } else {
+        // even the shortest font size is overflowing for 1 line
+
+        for (currentFontSize = parseInt(max); currentFontSize >= parseInt(min); currentFontSize--) {
+            let tobreak = false;
+            ctx.font = fontPre + currentFontSize + fontPost;
+
+            let words = text.split(" ");
+            firstLine = words[0];
+            for (let _ = 1; _ < words.length; _++) {
+                let word = words[_];
+                let currentLineWidth = ctx.measureText(firstLine + " " + word).width;
+                if (currentLineWidth < maxWidth) {
+                    firstLine += " " + word;
+                } else {
+                    words = words.splice(_);
+                    secondLine = words.join(" ");
+                    if (ctx.measureText(secondLine).width < maxWidth) {
+                        tobreak = true;
+                    }
+                    break;
+                }
+            }
+            if(tobreak) {
+                break;
+            }
+        }
+
+        if (currentFontSize >= parseInt(min)) {
+            // found an appropriate font size for 2 lines
+            ctx.font = fontPre + currentFontSize + fontPost;
+            let words = text.split(" ");
+            firstLine = words[0];
+            for (let _ = 1; _ < words.length; _++) {
+                let word = words[_];
+                let currentLineWidth = ctx.measureText(firstLine + " " + word).width;
+                if (currentLineWidth < maxWidth) {
+                    firstLine += " " + word;
+                } else {
+                    ctx.fillText(firstLine, x, y);
+                    secondLine = words.slice(_).join(" ");
+                    ctx.fillText(secondLine, x, y + currentFontSize);
+                    return currentFontSize;
+                }
+            }
+        } else {
+            // need to remove some words
+            let words = text.split(" ");
+            firstLine = words[0];
+            ctx.font = fontPre + min + fontPost;
+            for (let _ = 1; _ < words.length; _++) {
+                let word = words[_];
+                let currentLineWidth = ctx.measureText(firstLine + " " + word).width;
+                if (currentLineWidth < maxWidth) {
+                    firstLine += " " + word;
+                } else {
+                    words = words.splice(_);
+                    secondLine = words[0];
+                    for (let __ = 1; __ < words.length; __++) {
+                        let word = words[__];
+                        let currentLineWidth = ctx.measureText(secondLine + " " + word).width;
+                        if (currentLineWidth < maxWidth) {
+                            secondLine += " " + word;
+                        } else {
+                            text = firstLine + " " + secondLine + "...";
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+
+            for (currentFontSize = parseInt(max); currentFontSize >= parseInt(min); currentFontSize--) {
+                let tobreak = false;
+                ctx.font = fontPre + currentFontSize + fontPost;
+    
+                let words = text.split(" ");
+                firstLine = words[0];
+                for (let _ = 1; _ < words.length; _++) {
+                    let word = words[_];
+                    let currentLineWidth = ctx.measureText(firstLine + " " + word).width;
+                    if (currentLineWidth < maxWidth) {
+                        firstLine += " " + word;
+                    } else {
+                        words = words.splice(_);
+                        secondLine = words.join(" ");
+                        if (ctx.measureText(secondLine).width < maxWidth) {
+                            tobreak = true;
+                        }
+                        break;
+                    }
+                }
+                if(tobreak) {
+                    break;
+                }
+            }
+
+            ctx.font = fontPre + currentFontSize + fontPost;
+            words = text.split(" ");
+            firstLine = words[0];
+            for (let _ = 1; _ < words.length; _++) {
+                let word = words[_];
+                let currentLineWidth = ctx.measureText(firstLine + " " + word).width;
+                if (currentLineWidth < maxWidth) {
+                    firstLine += " " + word;
+                } else {
+                    ctx.fillText(firstLine, x, y);
+                    secondLine = words.slice(_).join(" ");
+                    ctx.fillText(secondLine, x, y + currentFontSize);
+                    return currentFontSize;
+                }
+            }
+        }
+    }
+}
+
 // Index
 app.get('/', (req, res) => {
     // Currently Only Song Name
@@ -327,7 +486,6 @@ app.get('/api', (req, res) => {
     if (req.query.color != null){
         imageColor = '#' + req.query.color
     }
-    console.log(orientation)
     if (orientation === null || !["landscape", "square"].includes(orientation)) {
         orientation = "landscape"
     }
