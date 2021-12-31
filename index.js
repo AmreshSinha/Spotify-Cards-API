@@ -16,6 +16,11 @@ app.use(cors({
 app.use('/css', express.static('public/css'));
 app.use('/fonts', express.static('fonts'));
 app.use('/img', express.static('public/img'));
+app.use('/assets/css', express.static('public/assets/css'));
+app.use('/assets/fontawesome', express.static('public/assets/fontawesome'));
+app.use('/assets/js', express.static('public/assets/js'));
+app.use('/assets/plugins', express.static('public/assets/plugins'));
+app.use('/assets/scss', express.static('public/assets/scss'));
 
 // Loading Dotenv if running on VPS
 require('dotenv').config()
@@ -476,6 +481,12 @@ app.get('/', (req, res) => {
 
 });
 
+app.get('/docs-page.html', (req, res) => {
+    // Currently Only Song Name
+    res.sendFile(path.join(__dirname, 'public/docs-page.html'))
+
+});
+
 // API
 app.get('/api', (req, res) => {
     let imageColor;
@@ -504,7 +515,6 @@ app.get('/api', (req, res) => {
 app.listen(port, () => {
     console.log(`app listening at http://localhost:${port}`)
 });
-
 isHexCode = function (hex) {
     allowedChars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'A', 'B', 'C', 'D', 'E', 'F'];
     if (hex.length != 3 && hex.length != 6) {
