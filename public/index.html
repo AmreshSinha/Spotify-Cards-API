@@ -1,204 +1,135 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en"> 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Spotify Cards Unofficial API</title>
-  <link rel="stylesheet" href="./css/style.css" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous" />
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-</head>
+    <title>Spotify Cards Unofficial API</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome JS-->
+    <script defer src="./assets/fontawesome/js/all.min.js"></script>
 
-<body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="https://spotify-cards.up.railway.app/">Spotify Cards API <span
-          class="badge bg-primary">v1.0.1</span></a>
-      <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content">
-        <div class="hamburger-toggle">
-          <div class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </div>
-      </button>
-      <div class="collapse navbar-collapse" id="navbar-content">
-        <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="https://spotify-cards.up.railway.app/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#usage">Usage</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://github.com/AmreshSinha/Spotify-Cards-API">Github</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <a href="https://github.com/AmreshSinha/Spotify-Cards-API" class="github-corner"
-    aria-label="View source on GitHub"><svg width="56.05" height="56.05" viewBox="0 0 250 250" style="
-          fill: #151513;
-          color: #fff;
-          position: absolute;
-          top: 0;
-          border: 0;
-          right: 0;
-        " aria-hidden="true">
-      <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
-      <path
-        d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
-        fill="currentColor" style="transform-origin: 130px 106px" class="octo-arm"></path>
-      <path
-        d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
-        fill="currentColor" class="octo-body"></path>
-    </svg></a>
-  <style>
-    .github-corner:hover .octo-arm {
-      animation: octocat-wave 560ms ease-in-out;
-    }
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="./assets/css/theme.css">
 
-    @keyframes octocat-wave {
+</head> 
 
-      0%,
-      100% {
-        transform: rotate(0);
-      }
+<body>    
+    <header class="header fixed-top">	 
+	       
+        <div class="branding docs-branding">
+            <div class="container-fluid position-relative py-2">
+                <div class="docs-logo-wrapper">
+	                <div class="site-logo"><a class="navbar-brand" href="/"><span class="logo-text">Spotify Cards<span class="text-alt"> Unofficial API</span></span></a></div>    
+                </div><!--//docs-logo-wrapper-->
+	            <div class="docs-top-utilities d-flex justify-content-end align-items-center">
+	
+					<ul class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
+						<li class="list-inline-item"><a href="https://github.com/AmreshSinha/Spotify-Cards-API"><i class="fab fa-github fa-fw"></i></a></li>
+		            </ul><!--//social-list-->
+		            <a href="https://github.com/AmreshSinha/Spotify-Cards-API" class="btn btn-primary d-none d-lg-flex">v1.0.1</a>
+	            </div><!--//docs-top-utilities-->
+            </div><!--//container-->
+        </div><!--//branding-->
+    </header><!--//header-->
+    
+    
+    <div class="page-header theme-bg-dark py-5 text-center position-relative">
+	    <div class="theme-bg-shapes-right"></div>
+	    <div class="theme-bg-shapes-left"></div>
+	    <div class="container">
+		    <h1 class="page-heading single-col-max mx-auto">Documentation</h1>
+		    <div class="page-intro single-col-max mx-auto">Learn how to use make use of this API to get an amazing card for your favourite song on Spotify.</div>
+	    </div>
+    </div><!--//page-header-->
+   <div class="page-content">
+	    <div class="container">
+		    <div class="docs-overview py-5">
+			    <div class="row justify-content-center">
+				    <div class="col-12 col-lg-4 py-3">
+					    <div class="card shadow-sm">
+						    <div class="card-body">
+							    <h5 class="card-title mb-3">
+								    <span class="theme-icon-holder card-icon-holder me-2">
+								        <i class="fas fa-map-signs"></i>
+							        </span><!--//card-icon-holder-->
+							        <span class="card-title-text">Introduction</span>
+							    </h5>
+							    <div class="card-text">
+								    Create personalized assets to share your music with friends on social.
+							    </div>
+							    <a class="card-link-mask" href="docs-page.html#section-1"></a>
+						    </div><!--//card-body-->
+					    </div><!--//card-->
+				    </div><!--//col-->
+				    <div class="col-12 col-lg-4 py-3">
+					    <div class="card shadow-sm">
+						    <div class="card-body">
+							    <h5 class="card-title mb-3">
+								    <span class="theme-icon-holder card-icon-holder me-2">
+								        <i class="fas fa-cogs"></i>
+							        </span><!--//card-icon-holder-->
+							        <span class="card-title-text">Usage</span>
+							    </h5>
+							    <div class="card-text">
+								    All the different parameters you can use to customize the card to your preference.
+							    </div>
+							    <a class="card-link-mask" href="docs-page.html#section-2"></a>
+						    </div><!--//card-body-->
+					    </div><!--//card-->
+				    </div><!--//col-->
+				    <div class="col-12 col-lg-4 py-3">
+					    <div class="card shadow-sm">
+						    <div class="card-body">
+							    <h5 class="card-title mb-3">
+								    <span class="theme-icon-holder card-icon-holder me-2">
+								        <i class="fab fa-github"></i>
+							        </span><!--//card-icon-holder-->
+							        <span class="card-title-text">Github</span>
+							    </h5>
+							    <div class="card-text">
+								    Report a bug, request a feature, or contribute to the API.
+								</div>
+							    <a class="card-link-mask" href="docs-page.html#section-3"></a>
+						    </div><!--//card-body-->
+					    </div><!--//card-->
+				    </div><!--//col-->
+			    </div><!--//row-->
+		    </div><!--//container-->
+		</div><!--//container-->
+    </div><!--//page-content-->
 
-      20%,
-      60% {
-        transform: rotate(-25deg);
-      }
+    <footer class="footer">
 
-      40%,
-      80% {
-        transform: rotate(10deg);
-      }
-    }
+	    <section class="cta-section text-center py-5 theme-bg-dark position-relative">
+			<div class="theme-bg-shapes-right"></div>
+			<div class="theme-bg-shapes-left"></div>
+			<div class="footer-bottom text-center py-5">
+				<!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
+				<small class="copyright" style="color: white;">Made with <i class="fas fa-heart" style="color: red;"></i> by <a class="theme-link" style="color: white" onMouseOver="this.style.color='#252930'" onMouseOut="this.style.color='white'" href="https://github.com/AmreshSinha/" target="_blank">AmreshSinha</a></small><br>
+				<small class="copyright" style="color: white;">Thanks to <a class="theme-link" style="color: white" onMouseOver="this.style.color='#252930'" onMouseOut="this.style.color='white'" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for the awesome template!</small>
+				
+			</div>
+		</section><!--//cta-section-->
+	    
+    </footer>
+       
+    <!-- Javascript -->          
+    <script src="./assets/plugins/popper.min.js"></script>
+    <script src="./assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+    
+    <!-- Page Specific JS -->
+    <script src="./assets/plugins/smoothscroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script src="./assets/js/highlight-custom.js"></script> 
+    <script src="./assets/plugins/simplelightbox/simple-lightbox.min.js"></script>      
+    <script src="./assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script> 
+    <script src="./assets/js/docs.js"></script> 
 
-    @media (max-width: 500px) {
-      .github-corner:hover .octo-arm {
-        animation: none;
-      }
-
-      .github-corner .octo-arm {
-        animation: octocat-wave 560ms ease-in-out;
-      }
-    }
-  </style>
-  <div class="container m-5 mx-auto">
-    <img src="/api?id=05iALOptaNoV3EmXnxz1IJ&color=A0C3D2"
-      class="img-fluid rounded mx-auto d-block" style="width: 50%; height: 50%" alt="Alchemy" />
-  </div>
-  <section class="my-5">
-    <div class="container">
-      <div class="p-4 border text-center">
-        <h1>
-          Spotify Cards Unofficial API
-          <span class="btn badge btn-primary"
-            onclick="window.location.href='https://github.com/AmreshSinha/Spotify-Cards-API';">1.0.1</span>
-        </h1>
-        <p>
-          <a href="https://github.com/AmreshSinha/Spotify-Cards-API/blob/master/LICENSE"><img
-              src="https://img.shields.io/github/license/AmreshSinha/Spotify-Cards-API?color=blue" /></a>
-          <a href="https://github.com/AmreshSinha/Spotify-Cards-API/stargazers"><img
-              src="https://img.shields.io/github/stars/AmreshSinha/Spotify-Cards-API" /></a>
-          <a href="https://github.com/AmreshSinha/Spotify-Cards-API/network/members"><img
-              src="https://img.shields.io/github/forks/AmreshSinha/Spotify-Cards-API" /></a>
-        </p>
-        <p class="lead">
-          Unofficial
-          <a href="https://promocards.byspotify.com/" class="text-decoration-none">Spotify Promo Cards</a>
-          API
-        </p>
-        <div class="alert alert-info" style="display: inline-block">
-          <strong>Note:</strong> Currently supports only Song Tracks (not
-          Albums)
-        </div>
-      </div>
-      <div class="p-4 my-4 border text-center">
-        <h2 id="usage">Usage</h2>
-        <hr />
-        <p class="fw-bold fs-3">By Song Track Name*</p>
-        <p class="fw-light">
-          *Results can differ as there can be another song with the Same Name
-        </p>
-        <code>https://spotify-cards.up.railway.app/api?name={song
-          name}</code>
-        <br />
-        <br />
-        <p class="fw-bold fs-6">Example</p>
-        <code>https://spotify-cards.up.railway.app/api?name=Silver%20Lining</code>
-        <hr />
-        <p class="fw-bold fs-3">
-          By Song Track ID <span class="lead fs-3">(Recommended)</span>
-        </p>
-        <code>https://spotify-cards.up.railway.app/api?id={song id}</code>
-        <br />
-        <br />
-        <p class="fw-bold fs-6">Example</p>
-        <code>https://spotify-cards.up.railway.app/api?id=05iALOptaNoV3EmXnxz1IJ</code>
-        <br />
-        <br />
-        <p class="fw-bold fs-6">How to get Spotify Song Track ID?</p>
-        <ul class="list-inline">
-          <li>Go to your song</li>
-          <li>
-            Right Click >> Share (Keep Ctrl Pressed) >> Copy Spotify URI
-          </li>
-          <li>
-            The ID after <code>spotify:track:</code> is the Spotify Song Track ID
-          </li>
-        </ul>
-        <hr />
-        <p class="fw-bolder fs-2">Color</p>
-        <hr />
-        <p class="fw-light">
-          Type hex code without #. If not specified, the best color corresponding to the song image will be used.
-        </p>
-        <code>https://spotify-cards.up.railway.app/api?id={song id}&color={color hex without #}</code>
-        <br />
-        <br />
-        <p class="fw-bold fs-6">Example</p>
-        <code>https://spotify-cards.up.railway.app/api?id=05iALOptaNoV3EmXnxz1IJ&color=A0C3D2</code>
-        <hr />
-        <p class="fw-bolder fs-2">Orientation</p>
-        <hr />
-        <p class="fw-bold fs-4">Landscape{Default}, Square</p>
-        <code>https://spotify-cards.up.railway.app/api?id={song id}&color={color hex without #}&orientation={landscape/square}</code>
-        <br />
-        <br />
-        <p class="fw-bold fs-6">Example</p>
-        <code>https://spotify-cards.up.railway.app/api?id=05iALOptaNoV3EmXnxz1IJ&color=A0C3D2&orientation=square</code>
-        <hr />
-        <p class="fw-bold">
-          Issues:
-          <a href="https://github.com/AmreshSinha/Spotify-Cards-API/issues"
-            target="_blank">https://github.com/AmreshSinha/Spotify-Cards-API/issues</a>
-        </p>
-      </div>
-    </div>
-  </section>
-  <footer class="bg-dark p-4 text-white text-center">
-    <small>Made by
-      <a href="https://github.com/AmreshSinha/" class="text-decoration-none">AmreshSinha</a>
-      with <i class="fas fa-heart" style="color: red"></i></small>
-    <br />
-    <small>Thanks to
-      <a href="https://codepen.io/typo3-freelancer/" class="text-decoration-none">Simon Köhler</a>
-      for the awesome website!</small>
-  </footer>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
-    crossorigin="anonymous"></script>
 </body>
-
 </html>

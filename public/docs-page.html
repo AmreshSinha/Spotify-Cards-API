@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <title>Spotify Cards Unofficial API</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome JS-->
+    <script defer src="./assets/fontawesome/js/all.min.js"></script>
+    
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.2/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="./assets/plugins/simplelightbox/simple-lightbox.min.css">
+
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="./assets/css/theme.css">
+
+</head> 
+
+<body class="docs-page">    
+    <header class="header fixed-top">	    
+        <div class="branding docs-branding">
+            <div class="container-fluid position-relative py-2">
+                <div class="docs-logo-wrapper">
+					<button id="docs-sidebar-toggler" class="docs-sidebar-toggler docs-sidebar-visible me-2 d-xl-none" type="button">
+	                    <span></span>
+	                    <span></span>
+	                    <span></span>
+	                </button>
+	                <div class="site-logo"><a class="navbar-brand" href="/"><span class="logo-text">Spotify Cards<span class="text-alt"> Unofficial API</span></span></a></div>    
+                </div><!--//docs-logo-wrapper-->
+	            <div class="docs-top-utilities d-flex justify-content-end align-items-center">
+	
+					<ul class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
+						<li class="list-inline-item"><a href="https://github.com/AmreshSinha/Spotify-Cards-API"><i class="fab fa-github fa-fw"></i></a></li>
+		            </ul><!--//social-list-->
+		            <a href="https://github.com/AmreshSinha/Spotify-Cards-API" class="btn btn-primary d-none d-lg-flex">v1.0.1</a>
+	            </div><!--//docs-top-utilities-->
+            </div><!--//container-->
+        </div><!--//branding-->
+    </header><!--//header-->
+    
+    
+    <div class="docs-wrapper">
+	    <div id="docs-sidebar" class="docs-sidebar">
+		    <nav id="docs-nav" class="docs-nav navbar">
+			    <ul class="section-items list-unstyled nav flex-column pb-3">
+				    <li class="nav-item section-title"><a class="nav-link scrollto active" href="#section-1"><span class="theme-icon-holder me-2"><i class="fas fa-map-signs"></i></span>Introduction</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-1-1">Landscape Card Example</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-1-2">Square Card Example</a></li>
+				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-2"><span class="theme-icon-holder me-2"><i class="fas fa-cogs"></i></span>Usage</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-2-1">By Song Track Name</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-2-2">By Song Track ID</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-2-3">Color</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-2-4">Orientation</a></li>
+				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-3"><span class="theme-icon-holder me-2"><i class="fab fa-github"></i></span>Github</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-3-1">Bug</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-3-2">Feature</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-3-3">Contribute</a></li>
+			    </ul>
+
+		    </nav><!--//docs-nav-->
+	    </div><!--//docs-sidebar-->
+	    <div class="docs-content">
+		    <div class="container">
+			    <article class="docs-article" id="section-1">
+				    <header class="docs-header">
+					    <h1 class="docs-heading">Introduction <span class="docs-time">Last updated: 28-12-2021</span></h1>
+					    <section class="docs-intro">
+						    Create personalized assets to share your music with friends on social.
+						</section><!--//docs-intro-->
+				    </header>
+				    <section class="docs-section" id="item-1-1">
+						<h2 class="section-heading">Landscape Card Example</h2>
+						<p>This is how your card will look in landscape orientation:</p>
+						<img class="figure-img img-fluid shadow rounded d-block" src="/api?id=05iALOptaNoV3EmXnxz1IJ&color=A0C3D2" alt="Alchemy"/>
+						<br>
+						<a target="_blank" href="/api?id=05iALOptaNoV3EmXnxz1IJ&color=A0C3D2" class="btn btn-light"><i class="fas fa-arrow-alt-circle-right me-2"></i> Open in New Tab</a>
+					</section><!--//section-->
+					
+					<section class="docs-section" id="item-1-2">
+						<h2 class="section-heading">Square Card Example</h2>
+						<p>And here's a square card for ya.</p>
+						<img style="height: 50%; width: 50%;" class="figure-img img-fluid shadow rounded d-block" src="http://localhost:3000/api?id=05iALOptaNoV3EmXnxz1IJ&color=A0C3D2&orientation=square" alt="Alchemy"/>
+						<br>
+						<a target="_blank" href="https://spotify-cards.up.railway.app/api?id=05iALOptaNoV3EmXnxz1IJ&color=A0C3D2&orientation=square" class="btn btn-light"><i class="fas fa-arrow-alt-circle-right me-2"></i> Open in New Tab</a>
+					</section><!--//section-->
+			    </article>
+			    
+			    <article class="docs-article" id="section-2">
+				    <header class="docs-header">
+					    <h1 class="docs-heading">Usage</h1>
+					    <section class="docs-intro">
+						    <p>There are different parameters you can use to customize the card to your preference.</p>
+
+						</section><!--//docs-intro-->
+				    </header>
+				     <section class="docs-section" id="item-2-1">
+						<h2 class="section-heading">By Song Track Name</h2>
+						<p>Use the name of your song to link it.</p>
+						<div class="alert alert-danger" role="alert">
+							Results can differ as there can be another song with the same name.
+						</div>
+						<div class="callout-block callout-block-info">
+                            
+                            <div class="content">
+                                <h4 class="callout-title">
+	                                <span class="callout-icon-holder me-1">
+		                                <i class="fas fa-info-circle"></i>
+		                            </span><!--//icon-holder-->
+	                                Use
+	                            </h4>
+                                <code>https://spotify-cards.up.railway.app/api?name={song name}</code>
+                            </div><!--//content-->
+                        </div><!--//callout-block-->
+
+						<div class="callout-block callout-block-success">
+                            <div class="content">
+                                <h4 class="callout-title">
+	                                <span class="callout-icon-holder me-1">
+		                                <i class="fas fa-thumbs-up"></i>
+		                            </span><!--//icon-holder-->
+	                                Example
+	                            </h4>
+                                <code>https://spotify-cards.up.railway.app/api?name=Silver%20Lining</code>
+                            </div><!--//content-->
+                        </div><!--//callout-block-->
+
+					</section><!--//section-->
+
+					<section class="docs-section" id="item-2-2">
+						<h2 class="section-heading">By Song Track ID</h2>
+						<p>Use the Track ID of your song to link it.</p>
+						<div class="alert alert-primary" role="alert">
+							Recommended
+						</div>
+						<h5>How to get Spotify Song Track ID?</h5>
+						<ol>
+							<li>Go to your song.</li>
+							<li>Right click >> Share (Keeping Ctrl pressed) >> Copy Spotify URI</li>
+							<li>The ID after <code>spotify:track:</code> is the Spotify Song Track ID.</li>
+						</ol>
+						<div class="callout-block callout-block-info">
+                            <div class="content">
+                                <h4 class="callout-title">
+	                                <span class="callout-icon-holder me-1">
+		                                <i class="fas fa-info-circle"></i>
+		                            </span><!--//icon-holder-->
+	                                Use
+	                            </h4>
+                                <code>https://spotify-cards.up.railway.app/api?id={song id}</code>
+                            </div><!--//content-->
+                        </div><!--//callout-block-->
+
+						<div class="callout-block callout-block-success">
+                            <div class="content">
+                                <h4 class="callout-title">
+	                                <span class="callout-icon-holder me-1">
+		                                <i class="fas fa-thumbs-up"></i>
+		                            </span><!--//icon-holder-->
+	                                Example
+	                            </h4>
+                                <code>https://spotify-cards.up.railway.app/api?id=05iALOptaNoV3EmXnxz1IJ</code>
+                            </div><!--//content-->
+                        </div><!--//callout-block-->
+
+					</section><!--//section-->
+					
+					<section class="docs-section" id="item-2-3">
+						<h2 class="section-heading">Color</h2>
+						<p>Provide a custom background color to your card.</p>
+						<div class="callout-block callout-block-info">
+                            <div class="content">
+                                <h4 class="callout-title">
+	                                <span class="callout-icon-holder me-1">
+		                                <i class="fas fa-info-circle"></i>
+		                            </span><!--//icon-holder-->
+	                                Use
+	                            </h4>
+                                <code>https://spotify-cards.up.railway.app/api?id={song id}&color={color hex without #}</code>
+                            </div><!--//content-->
+                        </div><!--//callout-block-->
+						<div class="callout-block callout-block-success">
+                            <div class="content">
+                                <h4 class="callout-title">
+	                                <span class="callout-icon-holder me-1">
+		                                <i class="fas fa-thumbs-up"></i>
+		                            </span><!--//icon-holder-->
+	                                Example
+	                            </h4>
+                                <code>https://spotify-cards.up.railway.app/api?id=05iALOptaNoV3EmXnxz1IJ&color=A0C3D2</code>
+                            </div><!--//content-->
+                        </div><!--//callout-block-->
+						<h3>Default Behaviour</h3>
+						<p>If no color property is mentioned in the request, the best color corresponding to the song image will be used.</p>
+						<div class="callout-block callout-block-danger me-1">
+                            <div class="content">
+                                <h4 class="callout-title">
+	                                <span class="callout-icon-holder">
+		                                <i class="fas fa-exclamation-triangle"></i>
+		                            </span><!--//icon-holder-->
+	                                Using # in hex code will lead to random behaviour.
+	                            </h4>
+                            </div><!--//content-->
+                        </div><!--//callout-block-->
+					</section><!--//section-->
+
+					<section class="docs-section" id="item-2-4">
+						<h2 class="section-heading">Orientation</h2>
+						<p>We support two orientations for the card: <strong>Landscape</strong> and <strong>Square</strong>.</p>
+						<div class="callout-block callout-block-info">
+                            <div class="content">
+                                <h4 class="callout-title">
+	                                <span class="callout-icon-holder me-1">
+		                                <i class="fas fa-info-circle"></i>
+		                            </span><!--//icon-holder-->
+	                                Use
+	                            </h4>
+                                <code>https://spotify-cards.up.railway.app/api?id={song id}&color={color hex without #}&orientation={landscape/square}</code>
+                            </div><!--//content-->
+                        </div><!--//callout-block-->
+						<div class="callout-block callout-block-success">
+                            <div class="content">
+                                <h4 class="callout-title">
+	                                <span class="callout-icon-holder me-1">
+		                                <i class="fas fa-thumbs-up"></i>
+		                            </span><!--//icon-holder-->
+	                                Example
+	                            </h4>
+                                <code>https://spotify-cards.up.railway.app/api?id=05iALOptaNoV3EmXnxz1IJ&color=A0C3D2&orientation=square</code>
+                            </div><!--//content-->
+                        </div><!--//callout-block-->
+						<h3>Default Behaviour</h3>
+						<p>If no orientation property is mentioned in the request, <strong>Landscape</strong> will be used.</p>
+					</section><!--//section-->
+			    </article><!--//docs-article-->
+			    
+			    
+			    <article class="docs-article" id="section-3">
+				    <header class="docs-header">
+					    <h1 class="docs-heading">Github</h1>
+					    <section class="docs-intro">
+						    <p>Report a bug, request a feature, or contribute to the API.</p>
+						</section><!--//docs-intro-->
+				    </header>
+				     <section class="docs-section" id="item-3-1">
+						<h2 class="section-heading">Bug</h2>
+						<p>If you come across an unexpected behaviour, please consider reporting it on our Github repository.</p>
+						<a href="https://github.com/AmreshSinha/Spotify-Cards-API/issues" class="btn btn-danger"><i class="fas fa-bug me-2"></i> Report bugs</a>
+					</section><!--//section-->
+					
+					<section class="docs-section" id="item-3-2">
+						<h2 class="section-heading">Feature</h2>
+						<p>Do you think something is missing in this API? Request a feature on our Github repository.</p>
+						<a href="https://github.com/AmreshSinha/Spotify-Cards-API/issues" class="btn btn-warning"><i class="fas fa-exclamation-circle me-2"></i> Request features</a>
+					</section><!--//section-->
+					
+					<section class="docs-section" id="item-3-3">
+						<h2 class="section-heading">Contribute</h2>
+						<p>Want to contribute to this API? Fork our Github repository now, and feel free to create a PR with your awesome changes.</p>
+						<a href="https://github.com/AmreshSinha/Spotify-Cards-API" class="btn btn-success"><i class="fas fa-code-branch me-2"></i> Fork Now</a>
+					</section><!--//section-->
+			    </article><!--//docs-article-->
+			    
+			    <footer class="footer">
+				    <div class="container text-center py-5">
+				        <small class="copyright">Template Copyright &copy; <a href="https://themes.3rdwavemedia.com/" target="_blank">3rd Wave Media</a></small>
+				        <ul class="social-list list-unstyled pt-4 mb-0">
+						    <li class="list-inline-item"><a href="https://github.com/AmreshSinha/Spotify-Cards-API"><i class="fab fa-github fa-fw"></i></a></li> 
+				        </ul><!--//social-list-->
+				    </div>
+			    </footer>
+		    </div> 
+	    </div>
+    </div><!--//docs-wrapper-->
+   
+       
+    <!-- Javascript -->          
+    <script src="./assets/plugins/popper.min.js"></script>
+    <script src="./assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+    
+    
+    <!-- Page Specific JS -->
+    <script src="./assets/plugins/smoothscroll.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script src="./assets/js/highlight-custom.js"></script> 
+    <script src="./assets/plugins/simplelightbox/simple-lightbox.min.js"></script>      
+    <script src="./assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script> 
+    <script src="./assets/js/docs.js"></script> 
+
+</body>
+</html> 
