@@ -140,6 +140,32 @@ async function searchTracksbyName(name, color, orientation, res, colorGiven) {
         dmY = 920
         dmW = 250
         dmH = 75
+    } else if (orientation === "portrait") {
+        width = 1080
+        height = 1920
+        imageX = 146;
+        imageY = 240;
+        imageWidth = 788
+        imageHeight = 788
+        songX = 115
+        songY = 1127
+        songNameX = 115
+        songNameY = 1215
+        songFont = "bold 150px"
+        songFontMax = "150"
+        songFontMin = "130"
+        songArtistX = 115
+        songArtistY = 1390
+        songArtistFont = "bold 60px"
+        songArtistFontMax = "60"
+        songArtistFontMin = "40"
+        bottomTextX = 475
+        bottomTextY = 1800
+        bottomTextFont = "40px"
+        dmX = 770
+        dmY = 1780
+        dmW = 266.19
+        dmH = 80
     }
 
     const data = await spotifyApi.searchTracks(name, {market:'US', limit:1, offset:0})
@@ -178,10 +204,16 @@ async function searchTracksbyName(name, color, orientation, res, colorGiven) {
         context.font = 'bold 22px GothamBlack'
         var ctext = text.split("").join(String.fromCharCode(8202))
         context.fillText(ctext, songX, songY)
+    } else if (orientation == "portrait") {
+        context.font = 'bold 40px GothamBlack'
+        var ctext = text.split("").join(String.fromCharCode(8202))
+        context.fillText(ctext, songX, songY)
     }
     if (orientation === "landscape") {
         // textWrap returns the downward shift that next element has to undergo
         songArtistY += textWrap(songName, songFontMax, songFontMin, 580, context, songNameX, songNameY, "bold ", "px GothamBold");
+    } else if (orientation === "portrait") {
+        songArtistY += textWrap(songName, songFontMax, songFontMin, 850, context, songNameX, songNameY, "bold ", "px GothamBold");
     } else {
         context.font = `${songFont} GothamBold`
         context.fillText(songName, songNameX, songNameY)
@@ -192,6 +224,8 @@ async function searchTracksbyName(name, color, orientation, res, colorGiven) {
         let downShift = textWrap(artistString, songArtistFontMax, songArtistFontMin, 500, context, songArtistX, songArtistY, "bold ", "px GothamBook");
         bottomTextY += downShift;
         dmY += downShift;
+    } else if (orientation === "portrait") {
+        textWrap(artistString, songArtistFontMax, songArtistFontMin, 500, context, songArtistX, songArtistY, "bold ", "px GothamBook");
     } else {
         context.font = `${songArtistFont} GothamBook`
         context.fillText(artistString, songArtistX, songArtistY)
@@ -282,6 +316,32 @@ async function searchTracksbyID(id, color, orientation, res, colorGiven) {
         dmY = 920
         dmW = 250
         dmH = 75
+    } else if (orientation === "portrait") {
+        width = 1080
+        height = 1920
+        imageX = 146;
+        imageY = 240;
+        imageWidth = 788
+        imageHeight = 788
+        songX = 115
+        songY = 1127
+        songNameX = 115
+        songNameY = 1215
+        songFont = "bold 150px"
+        songFontMax = "150"
+        songFontMin = "130"
+        songArtistX = 115
+        songArtistY = 1390
+        songArtistFont = "bold 60px"
+        songArtistFontMax = "60"
+        songArtistFontMin = "40"
+        bottomTextX = 475
+        bottomTextY = 1800
+        bottomTextFont = "40px"
+        dmX = 770
+        dmY = 1780
+        dmW = 266.19
+        dmH = 80
     }
 
     var data;
@@ -323,9 +383,15 @@ async function searchTracksbyID(id, color, orientation, res, colorGiven) {
         context.font = 'bold 22px GothamBlack'
         var ctext = text.split("").join(String.fromCharCode(8202))
         context.fillText(ctext, songX, songY)
+    } else if (orientation == "portrait") {
+        context.font = 'bold 40px GothamBlack'
+        var ctext = text.split("").join(String.fromCharCode(8202))
+        context.fillText(ctext, songX, songY)
     }
     if (orientation === "landscape") {
         songArtistY += textWrap(songName, songFontMax, songFontMin, 580, context, songNameX, songNameY, "bold ", "px GothamBold");
+    } else if (orientation === "portrait") {
+        songArtistY += textWrap(songName, songFontMax, songFontMin, 850, context, songNameX, songNameY, "bold ", "px GothamBold");
     } else {
         context.font = `${songFont} GothamBold`
         context.fillText(songName, songNameX, songNameY)
@@ -336,6 +402,8 @@ async function searchTracksbyID(id, color, orientation, res, colorGiven) {
         let downShift = textWrap(artistString, songArtistFontMax, songArtistFontMin, 500, context, songArtistX, songArtistY, "bold ", "px GothamBook");
         bottomTextY += downShift;
         dmY += downShift;
+    } else if (orientation === "portrait") {
+        textWrap(artistString, songArtistFontMax, songArtistFontMin, 500, context, songArtistX, songArtistY, "bold ", "px GothamBook");
     } else {
         context.font = `${songArtistFont} GothamBook`
         context.fillText(artistString, songArtistX, songArtistY)
@@ -519,7 +587,7 @@ app.get('/api', (req, res) => {
     if (req.query.color != null){
         imageColor = '#' + req.query.color
     }
-    if (orientation === null || !["landscape", "square"].includes(orientation)) {
+    if (orientation === null || !["landscape", "square", "portrait"].includes(orientation)) {
         orientation = "landscape"
     }
     if (colorGiven && (!isHexCode(req.query.color))) {
