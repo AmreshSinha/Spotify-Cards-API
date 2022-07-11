@@ -26,6 +26,6 @@
     "spotify-web-api-node": "^5.0.2"
   },
   "devDependencies": {
-    "node-sass": "^6.0.1"
+    "node-sass": "^7.0.1"
   }
 }
