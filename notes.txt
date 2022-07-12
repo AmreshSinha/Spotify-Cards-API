@@ -1,2 +1,0 @@
-// Text Wrap Canvas (Edits required!!!!!)
-http://jsfiddle.net/mg9jxhbn/1/
