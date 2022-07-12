@@ -1,0 +1,24 @@
+# For hosting with Traefik
+# Create a .env in root directory with Spotify App Credentials.
+# Docker will pick runtime environment vars from .env automatically
+
+version: '3.7'
+
+services:
+  sshot:
+    build: .
+    restart: always
+    networks:
+      - proxy
+    env_file: .env
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.spotifycards-secure.entrypoints=websecure"
+      - "traefik.http.routers.spotifycards-secure.rule=Host(`spotify-cards.x-axis.me`)"
+      - "traefik.http.routers.spotifycards-secure.service=spotifycards-service"
+      - "traefik.http.services.spotifycards-service.loadbalancer.server.port=3000"
+
+networks:
+  proxy:
+    external: true
