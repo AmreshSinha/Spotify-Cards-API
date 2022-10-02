@@ -1,8 +1,8 @@
 <p align="center">
-<img src="https://spotify-cards.x-axis.me//api?id=05iALOptaNoV3EmXnxz1IJ&color=A0C3D2" />
+<img src="https://spotify-cards.x-axis.me/api?id=05iALOptaNoV3EmXnxz1IJ&color=A0C3D2" />
 </p>
 
-An unofficial open-source Spotify PromoCards API built to serve Song Cards. For more information on using this API, see <a href="https://spotify-cards.up.railway.app/">Docs</a>
+An unofficial open-source Spotify PromoCards API built to serve Song Cards. For more information on using this API, see <a href="https://spotify-cards.x-axis.me/">Docs</a>
 
 # Table of contents
 
@@ -19,22 +19,22 @@ An unofficial open-source Spotify PromoCards API built to serve Song Cards. For 
 ### By Song Track Name*
 *Results can differ as there can be another song with the Same Name
 ```
-https://spotify-cards.up.railway.app/api?name={song name}&color={color hex without #}
+https://spotify-cards.x-axis.me/api?name={song name}&color={color hex without #}
 ```
 
 **Example**
 ```
-https://spotify-cards.up.railway.app/api?name=Silver%20Lining&color=A0C3D2
+https://spotify-cards.x-axis.me/api?name=Silver%20Lining&color=A0C3D2
 ```
 
 ### By Song Track ID {Recommended}
 ```
-https://spotify-cards.up.railway.app/api?id={song id}&color={color hex without #}
+https://spotify-cards.x-axis.me/api?id={song id}&color={color hex without #}
 ```
 
 **Example**
 ```
-https://spotify-cards.up.railway.app/api?id=05iALOptaNoV3EmXnxz1IJ&color=A0C3D2
+https://spotify-cards.x-axis.me/api?id=05iALOptaNoV3EmXnxz1IJ&color=A0C3D2
 ```
 
 ### Orientation
@@ -43,7 +43,7 @@ https://spotify-cards.up.railway.app/api?id=05iALOptaNoV3EmXnxz1IJ&color=A0C3D2
 
 **Example**
 ```
-https://spotify-cards.up.railway.app/api?id={song id}&color={color hex without #}&orientation={landscape/square}
+https://spotify-cards.x-axis.me/api?id={song id}&color={color hex without #}&orientation={landscape/square}
 ```
 
 ### How to get Spotify Song Track ID?
