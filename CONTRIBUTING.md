@@ -3,6 +3,7 @@
 First off, thanks for taking the time to contribute! We want to make contributing to this project as easy and transparent as possible.
 
 > If you like the project, but just don't have time to contribute, that's fine. There are other easy ways to support the project and show your appreciation, which we would also be very happy about:
+>
 > - Star the project
 > - Sending feedbacks
 > - Reporting bugs
@@ -10,6 +11,7 @@ First off, thanks for taking the time to contribute! We want to make contributin
 > - Improving the documentations
 
 <!-- omit in toc -->
+
 ## Table of Contents
 
 - [Code of Conduct](#code-of-conduct)
@@ -17,7 +19,6 @@ First off, thanks for taking the time to contribute! We want to make contributin
 - [Picking an Issue](#picking-an-issue)
 - [Branch Name](#branch-name)
 - [Pull Request](#pull-request)
-
 
 ## Code of Conduct
 
@@ -33,10 +34,10 @@ Help us keep Spotify-Cards-API open and inclusive. Please read and follow our [C
 1. Create a pull request ([How to create a Pull Request](https://opensource.com/article/19/7/create-pull-request-github))
 
 ## Picking an Issue
+
 If you decide to fix an issue, please be sure to check the comment thread in case somebody is already working on a fix. If nobody is working on it at the moment, please leave a comment stating that you intend to work on it so other people don’t accidentally duplicate your effort.
 
 If somebody claims an issue but doesn’t follow up for more than two weeks, it’s fine to take it over but you should still leave a comment.
-
 
 ## Branch Name
 
@@ -61,6 +62,6 @@ When `TYPE` can be:
 
 ## Pull Request
 
-The core team is monitoring for pull requests. We will review your pull request and either merge it, request changes to it, or close it with an explanation. 
+The core team is monitoring for pull requests. We will review your pull request and either merge it, request changes to it, or close it with an explanation.
 
 When creating a pull request, make sure all the prior functionality still working as intended. Remove any unecessary comments, log, or dead code. Attach a screenshot if your changes is related to UI changes. Don't forget to describe what are the changes in that pull request.
