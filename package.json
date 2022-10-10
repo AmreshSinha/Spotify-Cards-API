@@ -7,7 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "sass:compile": "node-sass --include-path sass public/scss/style.scss public/css/style.css"
+    "sass:compile": "node-sass --include-path sass public/scss/style.scss public/css/style.css",
+    "prettier:check": "prettier . --check",
+    "prettier:fix": "prettier . --write",
+    "prepare": "husky install"
   },
   "author": "",
   "license": "ISC",
@@ -26,6 +29,14 @@
     "spotify-web-api-node": "^5.0.2"
   },
   "devDependencies": {
-    "node-sass": "^7.0.1"
+    "husky": "^8.0.0",
+    "lint-staged": "^13.0.3",
+    "node-sass": "^7.0.1",
+    "prettier": "2.7.1"
+  },
+  "lint-staged": {
+    "*.{js,css,md,html}": [
+      "prettier --check --ignore-unknown"
+    ]
   }
 }

@@ -1,0 +1,6 @@
+# Packages
+node_modules
+
+# Compile and assets
+public/css/style.css
+public/assets

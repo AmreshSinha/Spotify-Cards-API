@@ -2,7 +2,7 @@
 # Create a .env in root directory with Spotify App Credentials.
 # Docker will pick runtime environment vars from .env automatically
 
-version: '3.7'
+version: "3.7"
 
 services:
   sshot:

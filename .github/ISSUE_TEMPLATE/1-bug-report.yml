@@ -41,5 +41,4 @@ body:
     attributes:
       label: Additional information
       description: Tell us anything else you think we should know.
-
 # Template taken from NodeJs Repository
