@@ -32,7 +32,7 @@
     "husky": "^8.0.0",
     "lint-staged": "^13.0.3",
     "node-sass": "^8.0.0",
-    "prettier": "2.8.1"
+    "prettier": "2.8.4"
   },
   "lint-staged": {
     "*.{js,css,md,html}": [
