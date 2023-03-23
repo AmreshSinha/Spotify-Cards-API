@@ -5,7 +5,7 @@
 version: "3.7"
 
 services:
-  sshot:
+  spotify-cards:
     build: .
     restart: always
     networks:
