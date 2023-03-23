@@ -29,10 +29,12 @@
     "spotify-web-api-node": "^5.0.2"
   },
   "devDependencies": {
-    "husky": "^8.0.0",
     "lint-staged": "^13.0.3",
     "node-sass": "^8.0.0",
     "prettier": "2.8.1"
+  },
+  "optionalDependencies": {
+    "husky": "^8.0.0"
   },
   "lint-staged": {
     "*.{js,css,md,html}": [
