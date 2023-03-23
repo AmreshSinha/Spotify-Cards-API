@@ -15,7 +15,7 @@ services:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
       - "traefik.http.routers.spotifycards-secure.entrypoints=websecure"
-      - "traefik.http.routers.spotifycards-secure.rule=Host(`spotify-cards.x-axis.me`)"
+      - "traefik.http.routers.spotifycards-secure.rule=Host(`spotify-cards.prj.fossian.com`)"
       - "traefik.http.routers.spotifycards-secure.service=spotifycards-service"
       - "traefik.http.services.spotifycards-service.loadbalancer.server.port=3000"
 
