@@ -56,11 +56,15 @@ jobs:
         with:
           useLockFile: true
       
-      - name: Run Server and Save Image
+      - name: Run Server
         run: |
           export Client_ID=${{secrets.SPOTIFY_CLIENT_ID}} Client_Secret=${{secrets.SPOTIFY_CLIENT_SECRET}}
           npm start &
-          sleep 10 &&
+          sleep 10
+      
+      - name: Render and Save Image
+        run: |
+          curl http://localhost:3000/api?id=05iALOptaNoV3EmXnxz1IJ&color=A0C3D2 &&
           curl http://localhost:3000/api?id=05iALOptaNoV3EmXnxz1IJ&color=A0C3D2 > output.png &&
           ls -lah
 
