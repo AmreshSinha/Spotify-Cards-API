@@ -1,6 +1,6 @@
 name: 🚀 Pull Request
-on: workflow_dispatch
-#   pull_request: {}
+on:
+  pull_request: {}
 
 permissions:
   actions: write
@@ -77,24 +77,21 @@ jobs:
           name: rendered-image
           path: ./output.png
       
-#       - name: Wget Local Render Image
-#         run: curl http://localhost:3000/api?id=05iALOptaNoV3EmXnxz1IJ&color=A0C3D2 > output.png
-      
-#       - name: Upload a picture
-#         uses: devicons/public-upload-to-imgur@v2.2.2
-#         id: imgur_step
-#         with:
-#           path: ./output.png 
-#           client_id: ${{secrets.IMGUR_CLIENT_ID}}
+      - name: Upload a picture
+        uses: devicons/public-upload-to-imgur@v2.2.2
+        id: imgur_step
+        with:
+          path: ./output.png 
+          client_id: ${{secrets.IMGUR_CLIENT_ID}}
 
-#       - name: Comment on the PR about the result
-#         uses: github-actions-up-and-running/pr-comment@v1.0.1
-#         env:
-#           IMG_URL: ${{ fromJSON(steps.imgur_step.outputs.imgur_urls)[0] }}
-#           MESSAGE: |
-#             Preview of Alchemy Song on Test Build:
-#             ![Image]({0}) # markdown syntax for displaying a picture
+      - name: Comment on the PR about the result
+        uses: github-actions-up-and-running/pr-comment@v1.0.1
+        env:
+          IMG_URL: ${{ fromJSON(steps.imgur_step.outputs.imgur_urls)[0] }}
+          MESSAGE: |
+            Preview of Alchemy Song on Test Build:
+            ![Image]({0}) # markdown syntax for displaying a picture
 
-#         with:
-#           repo-token: ${{ secrets.GITHUB_TOKEN }}
-#           message: ${{format(env.MESSAGE, env.IMG_URL)}}
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          message: ${{format(env.MESSAGE, env.IMG_URL)}}
