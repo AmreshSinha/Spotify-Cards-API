@@ -82,6 +82,13 @@ jobs:
           MESSAGE: |
             Preview of Alchemy Song on Test Build:
             ![Image]({0}) # markdown syntax for displaying a picture
+            
+      - name: Download Image
+        uses: actions/upload-artifact@v3
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          message: ${{format(env.MESSAGE, env.IMG_URL)}}  # add the url into the string
+          name: dist-without-markdown
+          path: ./output.png
+
+#         with:
+#           repo-token: ${{ secrets.GITHUB_TOKEN }}
+#           message: ${{format(env.MESSAGE, env.IMG_URL)}}
