@@ -64,8 +64,7 @@ jobs:
       
       - name: Render and Save Image
         run: |
-          curl http://localhost:3000/api?id=05iALOptaNoV3EmXnxz1IJ&color=A0C3D2 > output.png &&
-          ls -lah
+          curl "http://localhost:3000/api?id=05iALOptaNoV3EmXnxz1IJ&color=A0C3D2" > output.png
           
       - name: Verify Image
         run: |
