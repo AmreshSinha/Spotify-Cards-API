@@ -94,7 +94,7 @@ npm i
 4. Start and Run the Project
 
 ```
-node index.js
+npm start
 ```
 
 Server will start on port 3000
