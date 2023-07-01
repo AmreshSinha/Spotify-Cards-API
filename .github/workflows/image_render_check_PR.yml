@@ -63,31 +63,30 @@ jobs:
           sleep 5 &&
           curl http://localhost:3000/api?id=05iALOptaNoV3EmXnxz1IJ&color=A0C3D2 > output.png &&
           ls
-      
-#       - name: Wget Local Render Image
-#         run: curl http://localhost:3000/api?id=05iALOptaNoV3EmXnxz1IJ&color=A0C3D2 > output.png
-      
-      - name: Upload a picture
-        uses: devicons/public-upload-to-imgur@v2.2.2
-        id: imgur_step
-        with:
-          path: ./output.png 
-          client_id: ${{secrets.IMGUR_CLIENT_ID}}
 
-      - name: Comment on the PR about the result
-        uses: github-actions-up-and-running/pr-comment@v1.0.1  # you can use any action that you want. This is only an example
-        env:
-          # recall that this action returns a JSON.stringified array
-          IMG_URL: ${{ fromJSON(steps.imgur_step.outputs.imgur_urls)[0] }}  # get the output of the step above using its id
-          MESSAGE: |
-            Preview of Alchemy Song on Test Build:
-            ![Image]({0}) # markdown syntax for displaying a picture
-            
       - name: Download Image
         uses: actions/upload-artifact@v3
         with:
           name: dist-without-markdown
           path: ./output.png
+      
+#       - name: Wget Local Render Image
+#         run: curl http://localhost:3000/api?id=05iALOptaNoV3EmXnxz1IJ&color=A0C3D2 > output.png
+      
+#       - name: Upload a picture
+#         uses: devicons/public-upload-to-imgur@v2.2.2
+#         id: imgur_step
+#         with:
+#           path: ./output.png 
+#           client_id: ${{secrets.IMGUR_CLIENT_ID}}
+
+#       - name: Comment on the PR about the result
+#         uses: github-actions-up-and-running/pr-comment@v1.0.1
+#         env:
+#           IMG_URL: ${{ fromJSON(steps.imgur_step.outputs.imgur_urls)[0] }}
+#           MESSAGE: |
+#             Preview of Alchemy Song on Test Build:
+#             ![Image]({0}) # markdown syntax for displaying a picture
 
 #         with:
 #           repo-token: ${{ secrets.GITHUB_TOKEN }}
