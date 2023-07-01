@@ -1,6 +1,6 @@
 name: 🚀 Pull Request
-on: workflow_dispatch
-#   pull_request: {}
+on:
+  pull_request: {}
 
 permissions:
   actions: write
@@ -8,7 +8,7 @@ permissions:
 
 jobs:
   lint:
-    name: ⬣ ESLint
+    name: ⬣ Deps Check
     runs-on: ubuntu-latest
     steps:
       - name: 🛑 Cancel Previous Runs
@@ -42,6 +42,9 @@ jobs:
 
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v3
+        
+      - name: Install native deps
+        run: sudo apt-get install build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev
 
       - name: ⎔ Setup node
         uses: actions/setup-node@v3
@@ -52,3 +55,32 @@ jobs:
         uses: bahmutov/npm-install@v1
         with:
           useLockFile: true
+      
+      - name: Run Server and Save Image
+        run: |
+          export Client_ID=${{secrets.SPOTIFY_CLIENT_ID}} Client_Secret=${{secrets.SPOTIFY_CLIENT_SECRET}}
+          npm start &
+          sleep 5 &&
+          curl http://localhost:3000/api?id=05iALOptaNoV3EmXnxz1IJ&color=A0C3D2 > output.png
+      
+#       - name: Wget Local Render Image
+#         run: curl http://localhost:3000/api?id=05iALOptaNoV3EmXnxz1IJ&color=A0C3D2 > output.png
+      
+      - name: Upload a picture
+        uses: devicons/public-upload-to-imgur@v2.2.2
+        id: imgur_step
+        with:
+          path: ./output.png 
+          client_id: ${{secrets.IMGUR_CLIENT_ID}}
+
+      - name: Comment on the PR about the result
+        uses: github-actions-up-and-running/pr-comment@v1.0.1  # you can use any action that you want. This is only an example
+        env:
+          # recall that this action returns a JSON.stringified array
+          IMG_URL: ${{ fromJSON(steps.imgur_step.outputs.imgur_urls)[0] }}  # get the output of the step above using its id
+          MESSAGE: |
+            Preview of Alchemy Song on Test Build:
+            ![Image]({0}) # markdown syntax for displaying a picture
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          message: ${{format(env.MESSAGE, env.IMG_URL)}}  # add the url into the string
