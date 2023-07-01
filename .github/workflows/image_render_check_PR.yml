@@ -1,6 +1,6 @@
 name: 🚀 Pull Request
-on:
-  pull_request: {}
+on: workflow_dispatch
+#   pull_request: {}
 
 permissions:
   actions: write
