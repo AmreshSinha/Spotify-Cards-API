@@ -65,7 +65,7 @@ To log any issue or help in any issue, check out
 
 ## Release Versions
 
-- **1.0.0**: Supports only Song Tracks. Can take input from user as name or id only currently.
+- **1.0.0**: Supports only Song Tracks. It can take input from the user as name or id only currently.
 
 ## Host Your Own
 
@@ -79,7 +79,7 @@ See [HOSTING](https://github.com/AmreshSinha/Spotify-Cards-API/blob/master/HOSTI
 git clone https://github.com/AmreshSinha/Spotify-Cards-API.git
 ```
 
-2. Get into project folder and install node modules
+2. Get into the project folder and install node modules
 
 ```
 npm i
@@ -103,8 +103,8 @@ Server will start on port 3000
 
 ### Help Needed
 
-- Text Wrap: If the Song Name is too long then text size should decrease and wrap into 2 lines. Spacing between "SONG" and Song Name, and Song Name and Artist name should change accordingly. (Partial Support, Optimization needed)
-- <strike>Theme Color Extraction from image instead of Black as Default Color.</strike> Done Thanks to <a href="https://github.com/delivey">@delivey</a>
+- Text Wrap: If the Song Name is too long, the text size should decrease and wrap into 2 lines. Spacing between "SONG" and Song Name, and Song Name and Artist name should change accordingly. (Partial Support, Optimization needed)
+- <strike>Theme Color Extraction from the image instead of Black as the Default Color.</strike> Done Thanks to <a href="https://github.com/delivey">@delivey</a>
 - <strike>Adding Portrait Orientation.</strike> Done Thanks to <a href="https://github.com/delivey">@delivey</a>
 
 All the Issues are in <a href="https://github.com/AmreshSinha/Spotify-Cards-API/issues">ISSUES</a> section.
