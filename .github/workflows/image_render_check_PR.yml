@@ -64,14 +64,18 @@ jobs:
       
       - name: Render and Save Image
         run: |
-          curl http://localhost:3000/api?id=05iALOptaNoV3EmXnxz1IJ&color=A0C3D2 &&
           curl http://localhost:3000/api?id=05iALOptaNoV3EmXnxz1IJ&color=A0C3D2 > output.png &&
           ls -lah
+          
+      - name: Verify Image
+        run: |
+          ls -lah &&
+          cat ./output.png
 
       - name: Download Image
         uses: actions/upload-artifact@v3
         with:
-          name: dist-without-markdown
+          name: rendered-image
           path: ./output.png
       
 #       - name: Wget Local Render Image
