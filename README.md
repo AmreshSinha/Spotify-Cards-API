@@ -97,7 +97,7 @@ npm i
 npm start
 ```
 
-Server will start on port 3000
+The server will start on port 3000
 
 ## Contributing
 
