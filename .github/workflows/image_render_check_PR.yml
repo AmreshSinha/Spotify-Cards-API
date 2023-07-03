@@ -35,6 +35,8 @@ jobs:
 
   renderTest:
     name: ⬣ Rendering Test
+    permissions: 
+      pull-requests: write 
     runs-on: ubuntu-latest
     steps:
       - name: 🛑 Cancel Previous Runs
