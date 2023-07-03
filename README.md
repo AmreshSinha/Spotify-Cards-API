@@ -60,7 +60,7 @@ https://spotify-cards.fossian.com/api?id={song id}&color={color hex without #}&o
 
 ## Support
 
-To log any issue or help in any issue, check out
+To log any issue or help with any issue, check out
 [Issues Section](https://github.com/AmreshSinha/Spotify-Cards-API/issues).
 
 ## Release Versions
