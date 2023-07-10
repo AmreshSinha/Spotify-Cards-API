@@ -23,7 +23,7 @@
     "express": "^4.17.1",
     "isomorphic-fetch": "^3.0.0",
     "node-fetch": "^3.0.0",
-    "nodemon": "^2.0.13",
+    "nodemon": "^3.0.1",
     "pm2": "^5.1.2",
     "pug": "^3.0.2",
     "spotify-web-api-node": "^5.0.2"
